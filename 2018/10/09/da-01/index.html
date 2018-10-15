@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="数据结构和算法解决的是“快”和“省”的问题，即如何让代码运行得更快，如何让代码更省存储空间。我们用时间、空间复杂度来衡量编写代码的执行效率。 ###为什么需要复杂度分析  测试结果非常依赖测试环境 测试结果受数据规模影响很大所以，我们需要一个不用具体的测试数据来测试，就可以粗略的估计算法的执行效率的方法  ##大O复杂度表示法例子1: 求1，2，3…n的累加和。估算下面这段代码的执行时间 int">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何分析 统计算法的执行效率和资源消耗">
+<meta property="og:title" content="如何分析与统计算法的执行效率和资源消耗">
 <meta property="og:url" content="http://yoursite.com/2018/10/09/da-01/index.html">
 <meta property="og:site_name" content="Onion·Space">
 <meta property="og:description" content="数据结构和算法解决的是“快”和“省”的问题，即如何让代码运行得更快，如何让代码更省存储空间。我们用时间、空间复杂度来衡量编写代码的执行效率。 ###为什么需要复杂度分析  测试结果非常依赖测试环境 测试结果受数据规模影响很大所以，我们需要一个不用具体的测试数据来测试，就可以粗略的估计算法的执行效率的方法  ##大O复杂度表示法例子1: 求1，2，3…n的累加和。估算下面这段代码的执行时间 int">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-15T13:07:50.379Z">
+<meta property="og:updated_time" content="2018-10-15T13:10:24.287Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何分析 统计算法的执行效率和资源消耗">
+<meta name="twitter:title" content="如何分析与统计算法的执行效率和资源消耗">
 <meta name="twitter:description" content="数据结构和算法解决的是“快”和“省”的问题，即如何让代码运行得更快，如何让代码更省存储空间。我们用时间、空间复杂度来衡量编写代码的执行效率。 ###为什么需要复杂度分析  测试结果非常依赖测试环境 测试结果受数据规模影响很大所以，我们需要一个不用具体的测试数据来测试，就可以粗略的估计算法的执行效率的方法  ##大O复杂度表示法例子1: 求1，2，3…n的累加和。估算下面这段代码的执行时间 int">
     
     
@@ -36,7 +36,7 @@
         
     
     <!-- title -->
-    <title>如何分析 统计算法的执行效率和资源消耗</title>
+    <title>如何分析与统计算法的执行效率和资源消耗</title>
     <!-- styles -->
     <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
@@ -90,8 +90,6 @@
          
           <li><a href="https://onion-zx.github.io">Home</a></li>
          
-          <li><a href="/categories">categories</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
           <li><a href="https://github.com/ONION-ZX">Projects</a></li>
@@ -117,15 +115,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/10/09/da-01/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/10/09/da-01/&text=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/10/09/da-01/&is_video=false&description=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=如何分析 统计算法的执行效率和资源消耗&body=Check out this article: http://yoursite.com/2018/10/09/da-01/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/10/09/da-01/&name=如何分析 统计算法的执行效率和资源消耗&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/10/09/da-01/&text=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/10/09/da-01/&is_video=false&description=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=如何分析与统计算法的执行效率和资源消耗&body=Check out this article: http://yoursite.com/2018/10/09/da-01/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/10/09/da-01/&name=如何分析与统计算法的执行效率和资源消耗&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -142,7 +140,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        如何分析 统计算法的执行效率和资源消耗
+        如何分析与统计算法的执行效率和资源消耗
     </h1>
 
 
@@ -192,8 +190,6 @@
          
           <li><a href="https://onion-zx.github.io">Home</a></li>
          
-          <li><a href="/categories">categories</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
           <li><a href="https://github.com/ONION-ZX">Projects</a></li>
@@ -208,15 +204,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/10/09/da-01/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/10/09/da-01/&text=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/10/09/da-01/&is_video=false&description=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=如何分析 统计算法的执行效率和资源消耗&body=Check out this article: http://yoursite.com/2018/10/09/da-01/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析 统计算法的执行效率和资源消耗"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/10/09/da-01/&name=如何分析 统计算法的执行效率和资源消耗&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/10/09/da-01/&text=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/10/09/da-01/&is_video=false&description=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=如何分析与统计算法的执行效率和资源消耗&body=Check out this article: http://yoursite.com/2018/10/09/da-01/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/10/09/da-01/&title=如何分析与统计算法的执行效率和资源消耗"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/10/09/da-01/&name=如何分析与统计算法的执行效率和资源消耗&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -243,8 +239,6 @@
       <ul>
          
           <li><a href="https://onion-zx.github.io">Home</a></li>
-         
-          <li><a href="/categories">categories</a></li>
          
           <li><a href="/archives/">Writing</a></li>
          
