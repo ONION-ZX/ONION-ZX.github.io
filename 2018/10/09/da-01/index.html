@@ -7,13 +7,14 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="数据结构和算法解决的是“快”和“省”的问题，即如何让代码运行得更快，如何让代码更省存储空间。我们用时间、空间复杂度来衡量编写代码的执行效率。 为什么需要复杂度分析 测试结果非常依赖测试环境 测试结果受数据规模影响很大所以，我们需要一个不用具体的测试数据来测试，就可以粗略的估计算法的执行效率的方法  大O复杂度表示法例子1: 求1，2，3…n的累加和。估算下面这段代码的执行时间 12345678in">
+<meta name="keywords" content="hexo,markdown">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何分析与统计算法的执行效率和资源消耗">
 <meta property="og:url" content="http://yoursite.com/2018/10/09/da-01/index.html">
 <meta property="og:site_name" content="Onion·Space">
 <meta property="og:description" content="数据结构和算法解决的是“快”和“省”的问题，即如何让代码运行得更快，如何让代码更省存储空间。我们用时间、空间复杂度来衡量编写代码的执行效率。 为什么需要复杂度分析 测试结果非常依赖测试环境 测试结果受数据规模影响很大所以，我们需要一个不用具体的测试数据来测试，就可以粗略的估计算法的执行效率的方法  大O复杂度表示法例子1: 求1，2，3…n的累加和。估算下面这段代码的执行时间 12345678in">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T10:22:20.207Z">
+<meta property="og:updated_time" content="2018-10-16T14:01:00.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何分析与统计算法的执行效率和资源消耗">
 <meta name="twitter:description" content="数据结构和算法解决的是“快”和“省”的问题，即如何让代码运行得更快，如何让代码更省存储空间。我们用时间、空间复杂度来衡量编写代码的执行效率。 为什么需要复杂度分析 测试结果非常依赖测试环境 测试结果受数据规模影响很大所以，我们需要一个不用具体的测试数据来测试，就可以粗略的估计算法的执行效率的方法  大O复杂度表示法例子1: 求1，2，3…n的累加和。估算下面这段代码的执行时间 12345678in">
@@ -158,6 +159,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/hexo/">hexo</a>, <a class="tag-link" href="/tags/markdown/">markdown</a>
+    </div>
+
 
     </div>
   </header>
@@ -170,9 +176,9 @@
 <li>测试结果受数据规模影响很大<br>所以，<strong>我们需要一个不用具体的测试数据来测试，就可以粗略的估计算法的执行效率的方法</strong></li>
 </ol>
 <h2 id="大O复杂度表示法"><a href="#大O复杂度表示法" class="headerlink" title="大O复杂度表示法"></a>大O复杂度表示法</h2><p><strong>例子1:</strong> 求1，2，3…n的累加和。估算下面这段代码的执行时间</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int cal(int n) &#123;</span><br><span class="line">    int sum = 0;</span><br><span class="line">    int i = 1;</span><br><span class="line">    <span class="keyword">for</span>(; i &lt;= n; ++i) &#123;</span><br><span class="line">        sum = sum + i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(; i &lt;= n; ++i) &#123;</span><br><span class="line">        sum = sum + i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>首先假设每行代码执行的时间都一样，为unit_time<br>第2、3行代码分别需要1一个unit_time的执行时间，第4，5行都运行了n遍，所以分别需要n*unit_time的执行时间。那么这段代码的总执行时间就是(2n+2)*unit_time。<br><strong>例子2:</strong> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int cal(int n) &#123;</span><br><span class="line">    int sum = 0;</span><br><span class="line">    int i = 1;</span><br><span class="line">    int j = 1;</span><br><span class="line">    for(; i &lt;= n; ++i) &#123;</span><br><span class="line">        j = 1;</span><br><span class="line">        for(; j &lt;=n; j++ ) &#123;</span><br><span class="line">            sum = sum + j * j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(; i &lt;= n; ++i) &#123;</span><br><span class="line">        j = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(; j &lt;=n; j++ ) &#123;</span><br><span class="line">            sum = sum + j * j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>依旧假设每行代码执行的时间都为unit_time<br>第2、3、4行代码分别需要1个unit_time 的执行时间，第5、6行都运行了n²遍，所欲分别需要n²*unit_time的执行时间。第7，8行都运行了n遍，所以分别需要n*unit_time的执行时间。那么这段代码的总执行时间就是(2n²+2n+3)*unit_time。</p>
 <p>尽管我们不知道unit_time的具体值，但是通过这两段代码执行时间的推到过程，我们可以得到一个非常重要的规律: 所有代码的执行时间T(n)与每行代码的执行次数n成正比</p>
 
