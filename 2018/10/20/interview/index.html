@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Onion·Space">
 <meta property="og:description" content="什么是盒子模型?在我们平时看到的网页中，内部的每一个标签元素都是由几个部分构成的: 内容(content),边框(border),内边距(padding)和外边距(margin)。关于盒子模型重点需要掌握的是IE盒模型和标准盒模型的区别:两者的区别在于content的不同，IE盒模型的content包括padding、border。 position的四个属性及它们的区别 static(静态定位)">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-20T15:14:10.800Z">
+<meta property="og:updated_time" content="2018-10-24T11:48:53.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5&#x2F;CSS3-面试集锦">
 <meta name="twitter:description" content="什么是盒子模型?在我们平时看到的网页中，内部的每一个标签元素都是由几个部分构成的: 内容(content),边框(border),内边距(padding)和外边距(margin)。关于盒子模型重点需要掌握的是IE盒模型和标准盒模型的区别:两者的区别在于content的不同，IE盒模型的content包括padding、border。 position的四个属性及它们的区别 static(静态定位)">
@@ -131,7 +131,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是盒子模型"><span class="toc-number">1.</span> <span class="toc-text">什么是盒子模型?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#position的四个属性及它们的区别"><span class="toc-number">2.</span> <span class="toc-text">position的四个属性及它们的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是文档流"><span class="toc-number">3.</span> <span class="toc-text">什么是文档流?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z-index属性"><span class="toc-number">4.</span> <span class="toc-text">z-index属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#页面导入样式有几种方法-它们的区别是"><span class="toc-number">5.</span> <span class="toc-text">页面导入样式有几种方法? 它们的区别是?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对Cookie-sessionStorage-localStorge的理解"><span class="toc-number">6.</span> <span class="toc-text">对Cookie,sessionStorage,localStorge的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML语义化"><span class="toc-number">7.</span> <span class="toc-text">HTML语义化</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是盒子模型"><span class="toc-number">1.</span> <span class="toc-text">什么是盒子模型?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#position的四个属性及它们的区别"><span class="toc-number">2.</span> <span class="toc-text">position的四个属性及它们的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是文档流"><span class="toc-number">3.</span> <span class="toc-text">什么是文档流?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z-index属性"><span class="toc-number">4.</span> <span class="toc-text">z-index属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#页面导入样式有几种方法-它们的区别是"><span class="toc-number">5.</span> <span class="toc-text">页面导入样式有几种方法? 它们的区别是?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML语义化"><span class="toc-number">6.</span> <span class="toc-text">HTML语义化</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -185,17 +185,14 @@
 <li>@import引入，这种方式是由CSS提供的，只能用于加载CSS。</li>
 <li>style嵌入方式引入，这种方式的优点是减少页面请求，缺点是只会对当前的页面有效，无法复用导致代码冗余、不利于项目维护。<br><strong>note：页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载,且link是XHTML标签，无兼容问题; link支持动态js去控制DOM节点去改变样式，而@import不支持</strong></li>
 </ul>
-<h2 id="对Cookie-sessionStorage-localStorge的理解"><a href="#对Cookie-sessionStorage-localStorge的理解" class="headerlink" title="对Cookie,sessionStorage,localStorge的理解"></a>对Cookie,sessionStorage,localStorge的理解</h2><ul>
-<li>Cookie: Cookie是网站为了标示用户身份而储存在用户本地终端上的数据（通常经过加密），比如你登录某个网站市场可以看到“记住密码”，这通常就是通过在Cookie中存入一段辨别用户身份的数据来实现的。cookie数据始终在同源的http请求中携带，即会在浏览器和服务器间来回传递。</li>
-<li>sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。</li>
-<li>大小: cookie数据大小不能超过4k,sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。</li>
-<li>时效: localStorage存储持久数据，浏览器关闭后数据不丢失，除非用户主动删除数据或清除浏览器/应用缓存；sessionStorage数据在当前浏览器窗口关闭后自动删除。而cookie设置的过期一直有效，即使窗口或浏览器关闭。</li>
-<li>sessionStorage在浏览器多窗口之间(同域)数据不会互通共享，localStorage会共享。<br><em>参考文章: <a href="http://jerryzou.com/posts/cookie-and-web-storage/" target="_blank" rel="noopener">详说 Cookie, LocalStorage 与 SessionStorage</a>!</em><h2 id="HTML语义化"><a href="#HTML语义化" class="headerlink" title="HTML语义化"></a>HTML语义化</h2>根据内容的结构化，选择合适的标签，便于开发者阅读和写出更优雅的代码的同事，让浏览器的爬虫和机器更好的解析。</li>
+<h2 id="HTML语义化"><a href="#HTML语义化" class="headerlink" title="HTML语义化"></a>HTML语义化</h2><p>根据内容的结构化，选择合适的标签，便于开发者阅读和写出更优雅的代码的同时，让浏览器的爬虫和机器更好的解析。</p>
+<ul>
 <li>有利于SEO，有助于爬虫抓取更多的有效信息，爬虫是依赖于标签来确定上下文和各个关键字的权重。</li>
 <li>语义化的HTML在没有CSS的情况下也能呈现较好的内容结构与代码结构。</li>
 <li>便于开发和维护。</li>
 <li>方便其它设备的解析。</li>
 </ul>
+<p>##CSS中的单位px,em与rem<br><a href="https://www.cnblogs.com/leejersey/p/3662612.html" target="_blank" rel="noopener">OnionSpace</a>!</p>
 
   </div>
 </article>
@@ -220,7 +217,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是盒子模型"><span class="toc-number">1.</span> <span class="toc-text">什么是盒子模型?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#position的四个属性及它们的区别"><span class="toc-number">2.</span> <span class="toc-text">position的四个属性及它们的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是文档流"><span class="toc-number">3.</span> <span class="toc-text">什么是文档流?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z-index属性"><span class="toc-number">4.</span> <span class="toc-text">z-index属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#页面导入样式有几种方法-它们的区别是"><span class="toc-number">5.</span> <span class="toc-text">页面导入样式有几种方法? 它们的区别是?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对Cookie-sessionStorage-localStorge的理解"><span class="toc-number">6.</span> <span class="toc-text">对Cookie,sessionStorage,localStorge的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML语义化"><span class="toc-number">7.</span> <span class="toc-text">HTML语义化</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是盒子模型"><span class="toc-number">1.</span> <span class="toc-text">什么是盒子模型?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#position的四个属性及它们的区别"><span class="toc-number">2.</span> <span class="toc-text">position的四个属性及它们的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是文档流"><span class="toc-number">3.</span> <span class="toc-text">什么是文档流?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z-index属性"><span class="toc-number">4.</span> <span class="toc-text">z-index属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#页面导入样式有几种方法-它们的区别是"><span class="toc-number">5.</span> <span class="toc-text">页面导入样式有几种方法? 它们的区别是?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML语义化"><span class="toc-number">6.</span> <span class="toc-text">HTML语义化</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
