@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="是什么和为什么在了解webpack是什么之前，我们需要知道前端的一个巨大的坑————浏览器在解析JS的时候有一个盲点，它并没有做到解析其它语言时的模块化，一个文件要给另一个文件暴露数据或者变量，只能将它定义在全局作用域下，没有其它的办法。所以归根结底就是我们web标准的问题，在一开始的时候没有考虑到文件之间共享代码/数据的问题。webpack解决的就是这个问题，我们用写后端语言的方式写前端的代码，">
+<meta name="keywords" content="webpack,前端,模块化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/11/26/webpack/index.html">
+<meta property="og:site_name" content="Onion·Space">
+<meta property="og:description" content="是什么和为什么在了解webpack是什么之前，我们需要知道前端的一个巨大的坑————浏览器在解析JS的时候有一个盲点，它并没有做到解析其它语言时的模块化，一个文件要给另一个文件暴露数据或者变量，只能将它定义在全局作用域下，没有其它的办法。所以归根结底就是我们web标准的问题，在一开始的时候没有考虑到文件之间共享代码/数据的问题。webpack解决的就是这个问题，我们用写后端语言的方式写前端的代码，">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-26T10:31:41.851Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Webpack学习笔记">
+<meta name="twitter:description" content="是什么和为什么在了解webpack是什么之前，我们需要知道前端的一个巨大的坑————浏览器在解析JS的时候有一个盲点，它并没有做到解析其它语言时的模块化，一个文件要给另一个文件暴露数据或者变量，只能将它定义在全局作用域下，没有其它的办法。所以归根结底就是我们web标准的问题，在一开始的时候没有考虑到文件之间共享代码/数据的问题。webpack解决的就是这个问题，我们用写后端语言的方式写前端的代码，">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Webpack学习笔记</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Onion·Space</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="https://onion-zx.github.io">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/ONION-ZX">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/11/13/mac01/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/26/webpack/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/26/webpack/&text=Webpack学习笔记"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/26/webpack/&is_video=false&description=Webpack学习笔记"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Webpack学习笔记&body=Check out this article: http://yoursite.com/2018/11/26/webpack/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/26/webpack/&name=Webpack学习笔记&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#是什么和为什么"><span class="toc-number">1.</span> <span class="toc-text">是什么和为什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#entry和output"><span class="toc-number">4.</span> <span class="toc-text">entry和output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loader"><span class="toc-number">5.</span> <span class="toc-text">loader</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Webpack学习笔记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Onion·Space</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-11-26T08:37:41.096Z" itemprop="datePublished">2018-11-26</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/webpack/">webpack</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/模块化/">模块化</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="是什么和为什么"><a href="#是什么和为什么" class="headerlink" title="是什么和为什么"></a>是什么和为什么</h2><p>在了解webpack是什么之前，我们需要知道前端的一个巨大的坑————浏览器在解析JS的时候有一个盲点，它并没有做到解析其它语言时的模块化，一个文件要给另一个文件暴露数据或者变量，只能将它定义在全局作用域下，没有其它的办法。所以归根结底就是我们web标准的问题，在一开始的时候没有考虑到文件之间共享代码/数据的问题。webpack解决的就是这个问题，我们用写后端语言的方式写前端的代码，前端就无法识别(因为前端无模块化体系)，webpack就可以做到动态地把后端的代码编程浏览器能够读懂的代码，也就是[后端代码前端化]。<br>webpack————用后端的方式让浏览器读懂我们的代码，并且让我们的代码更加模块化。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于webpack是跑在node环境下的，所以我们首先要安装node(安装node后自带npm命令)。安装完毕后可以输入命令<code>node -v</code>和<code>npm -v</code>查看版本号。如果有版本信息证明安装成功。</p>
+<ul>
+<li>全局安装<br><code>npm i webpack -g</code><br>全局安装完毕后即可在任何一个目录下运行webpack命令。(如:webpack a.js bundle.js 入口文件-a.js 打包后的文件-bundle.js)<br>全局安装的弊端: 有的时候项目中我们写的配置文件可能是针对某一版本的webpack，换一台机器，这台机器全局安装的webpack版本可能与我们项目中想要的webpack版本不一致，这就可能出问题。所以一般比较推荐局部安装。</li>
+<li>局部安装<br>首先进入项目目录，输入命令<code>npm init -y</code>，生成一个package.json文件，生成这个文件后，npm就会认为整个目录就是一个项目/模块了。然后在当前目录下安装webpack。输入命令<code>npm i webpack -D</code>。安装完毕后我们就会在package.json中看到版本信息了。以后我们的项目运行在其它平台上，只需要<code>npm install</code>就可以了。<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2>在本地环境下跑webpack: node_modules/.bin/webpack a.js bundle.js。<br>觉得命令长，可以将命令写在package.json中，如:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "pack": node_modules/.bin/webpack a.js bundle.js</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后<code>npm run pack</code>就可以了。(pack是自定义的键名)<br>但是由于webpack的功能比较强大，配置项非常多，所以一般把配置项写在一个文件里面，文件名为webpack.config.js。然后在这个文件中暴露一些东西出去，比如:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'a.js'</span>, <span class="comment">//必须有 入口文件</span></span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'pack.js'</span>, <span class="comment">//必须有 出口文件</span></span><br><span class="line">        path: ___dirname, <span class="comment">//当前目录</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="entry和output"><a href="#entry和output" class="headerlink" title="entry和output"></a>entry和output</h2><p>当业务逻辑比较复杂，可能有不止一页，这时我们就需要多入口和多出口:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        home: <span class="string">'./js/home.js'</span>, <span class="comment">//首页的入口文件</span></span><br><span class="line">        signup: <span class="string">'./js/signup.js'</span>, <span class="comment">//注册页的入口文件</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">        path: __dirname + <span class="string">'/dist'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ES6写法<br>直接解构，将对象中的键编程一个变量，可以直接用。更加简洁~<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在index.js中</span></span><br><span class="line"><span class="keyword">var</span> open = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">export</span> &#123;open&#125;;</span><br><span class="line"><span class="comment">//在home.js中</span></span><br><span class="line"><span class="keyword">import</span> &#123;open&#125; <span class="keyword">from</span> <span class="string">'./index.js'</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h2><p>每做一次修改就跑一次webpack非常麻烦，我们可以在package.json中设置命令:</p>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="https://onion-zx.github.io">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/ONION-ZX">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#是什么和为什么"><span class="toc-number">1.</span> <span class="toc-text">是什么和为什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#entry和output"><span class="toc-number">4.</span> <span class="toc-text">entry和output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loader"><span class="toc-number">5.</span> <span class="toc-text">loader</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/26/webpack/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/26/webpack/&text=Webpack学习笔记"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/26/webpack/&is_video=false&description=Webpack学习笔记"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Webpack学习笔记&body=Check out this article: http://yoursite.com/2018/11/26/webpack/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/26/webpack/&title=Webpack学习笔记"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/26/webpack/&name=Webpack学习笔记&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 onion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="https://onion-zx.github.io">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/ONION-ZX">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>
