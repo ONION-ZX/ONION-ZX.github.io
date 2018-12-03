@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="容器的属性 flex-direction表示项目的排列方向: row | row-reverse | column | column-reverse flex-wrap表示如果一条轴线排不下如何换行:   nowrap(默认) 不换行 wrap 换行 第一行在上方 wrap-reverse 换行 第一行在下方  flex-flowflex-direction和flex-wrap的简写形式 默认值为">
+    <meta name="description" content="容器的属性flex-direction / flex-wrap /  justify-content / align-items / align-content  flex-direction表示项目的排列方向: row | row-reverse | column | column-reverse flex-wrap表示如果一条轴线排不下如何换行:   nowrap(默认) 不换行 wrap 换">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flex速查表">
 <meta property="og:url" content="http://yoursite.com/2018/12/03/flex/index.html">
 <meta property="og:site_name" content="Onion·Space">
-<meta property="og:description" content="容器的属性 flex-direction表示项目的排列方向: row | row-reverse | column | column-reverse flex-wrap表示如果一条轴线排不下如何换行:   nowrap(默认) 不换行 wrap 换行 第一行在上方 wrap-reverse 换行 第一行在下方  flex-flowflex-direction和flex-wrap的简写形式 默认值为">
+<meta property="og:description" content="容器的属性flex-direction / flex-wrap /  justify-content / align-items / align-content  flex-direction表示项目的排列方向: row | row-reverse | column | column-reverse flex-wrap表示如果一条轴线排不下如何换行:   nowrap(默认) 不换行 wrap 换">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-03T02:38:07.932Z">
+<meta property="og:updated_time" content="2018-12-03T02:42:09.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flex速查表">
-<meta name="twitter:description" content="容器的属性 flex-direction表示项目的排列方向: row | row-reverse | column | column-reverse flex-wrap表示如果一条轴线排不下如何换行:   nowrap(默认) 不换行 wrap 换行 第一行在上方 wrap-reverse 换行 第一行在下方  flex-flowflex-direction和flex-wrap的简写形式 默认值为">
+<meta name="twitter:description" content="容器的属性flex-direction / flex-wrap /  justify-content / align-items / align-content  flex-direction表示项目的排列方向: row | row-reverse | column | column-reverse flex-wrap表示如果一条轴线排不下如何换行:   nowrap(默认) 不换行 wrap 换">
     
     
         
@@ -162,7 +162,8 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h2><ul>
+    <h2 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h2><p>flex-direction / flex-wrap /  justify-content / align-items / align-content</p>
+<ul>
 <li>flex-direction<br>表示项目的排列方向: row | row-reverse | column | column-reverse</li>
 <li>flex-wrap<br>表示如果一条轴线排不下如何换行:   <pre><code>nowrap(默认) 不换行
 wrap 换行 第一行在上方
@@ -189,13 +190,14 @@ space-around 每根轴线两侧的间隔都相等 所以 轴线之间的间隔�
 stretch(默认) 轴线占满整个交叉轴
 </code></pre></li>
 </ul>
-<h2 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h2><ul>
+<h2 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h2><p>order / flex-grow / flex-shrink / flex-basis / flex / align-self</p>
+<ul>
 <li>order<br>定义项目的排列顺序。数值越小，排列越靠前，默认为0。</li>
 <li>flex-grow<br>定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。<br>如果所有项目的flex-grow属性都为1，并且有剩余空间的画，它们将等分剩余空间。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</li>
 <li>flex-shrink<br>定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。<br>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</li>
 <li>flex-basis<br>定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。<br>flex-basis:  length | auto;</li>
 <li>flex<br>flex-grow flex-shrink和flex-basis的缩写，默认值为0 1 auto。后面两个属性可选。<br>该属性的两个快捷值 auto(1 1 auto)和 none(0 0 auto)。<br>建议优先使用</li>
-<li>align-self<br>允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。<br>align-self: <pre><code>auto
+<li>align-self<br>允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。<pre><code>auto
 flex-start
 flex-end
 center
