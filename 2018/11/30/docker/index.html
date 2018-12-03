@@ -6,18 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Docker与传统虚拟化方式的不同传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行与宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。 Docker的优势">
+    <meta name="description" content="Docker与传统虚拟化方式的不同传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行与宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。 Docker的优势 更高效的利用系统资源Docker不需要进行硬件虚拟以及运行完整操作系统等额外开销。所以Docker对系统资源的利用率更高。 更快速的启">
 <meta name="keywords" content="Docker,容器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker学习笔记">
 <meta property="og:url" content="http://yoursite.com/2018/11/30/docker/index.html">
 <meta property="og:site_name" content="Onion·Space">
-<meta property="og:description" content="Docker与传统虚拟化方式的不同传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行与宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。 Docker的优势">
+<meta property="og:description" content="Docker与传统虚拟化方式的不同传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行与宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。 Docker的优势 更高效的利用系统资源Docker不需要进行硬件虚拟以及运行完整操作系统等额外开销。所以Docker对系统资源的利用率更高。 更快速的启">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-30T07:18:54.234Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005GOhIugy1fxq4xctp39j30rt087mxt.jpg">
+<meta property="og:updated_time" content="2018-11-30T09:23:23.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker学习笔记">
-<meta name="twitter:description" content="Docker与传统虚拟化方式的不同传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行与宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。 Docker的优势">
+<meta name="twitter:description" content="Docker与传统虚拟化方式的不同传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行与宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。 Docker的优势 更高效的利用系统资源Docker不需要进行硬件虚拟以及运行完整操作系统等额外开销。所以Docker对系统资源的利用率更高。 更快速的启">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/005GOhIugy1fxq4xctp39j30rt087mxt.jpg">
     
     
         
@@ -101,6 +103,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2018/12/01/sass/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$("#i-prev").toggle();" onmouseout="$("#i-prev").toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2018/11/27/css01/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$("#i-next").toggle();" onmouseout="$("#i-next").toggle();"></i></a></li>
         
@@ -129,7 +133,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker与传统虚拟化方式的不同"><span class="toc-number">1.</span> <span class="toc-text">Docker与传统虚拟化方式的不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker的优势"><span class="toc-number">2.</span> <span class="toc-text">Docker的优势</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker与传统虚拟化方式的不同"><span class="toc-number">1.</span> <span class="toc-text">Docker与传统虚拟化方式的不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker的优势"><span class="toc-number">2.</span> <span class="toc-text">Docker的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">3.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Docker"><span class="toc-number">4.</span> <span class="toc-text">安装Docker</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -169,7 +173,21 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="Docker与传统虚拟化方式的不同"><a href="#Docker与传统虚拟化方式的不同" class="headerlink" title="Docker与传统虚拟化方式的不同"></a>Docker与传统虚拟化方式的不同</h2><p>传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行与宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。</p>
-<h2 id="Docker的优势"><a href="#Docker的优势" class="headerlink" title="Docker的优势"></a>Docker的优势</h2>
+<h2 id="Docker的优势"><a href="#Docker的优势" class="headerlink" title="Docker的优势"></a>Docker的优势</h2><ul>
+<li>更高效的利用系统资源<br>Docker不需要进行硬件虚拟以及运行完整操作系统等额外开销。所以Docker对系统资源的利用率更高。</li>
+<li>更快速的启动时间<br>Docker直接运行于宿主内核，无需启动完整的操作系统，因此可以做到秒级、甚至毫秒级的启动时间。大大的节约了开发、测试、部署的时间。</li>
+<li>一致的运行环境<br>开发过程中一个常见的问题是环境一致性问题。由于开发环境、测试环境、生产环境不一致，导致有些bug并未在开发过程中被发现。而Docker的镜像提供除了内核外完整的运行时环境，确保应用环境一致性。</li>
+<li>持续交付和部署<br>使用Docker可以通过定制应用镜像来实现持续集成、持续交付、部署。开发人员可以通过Dockerfile来进行镜像构建，并结合持续集成系统进行集成测试，而运维人员则可以直接在生产环境中快速部署该镜像，甚至结合持续部署系统进行自动部署。<br>而且Dockerfile使镜像构建透明化，不仅仅开发团队可以理解应用运行环境，也方便运维团队理解应用运行所需条件，帮助更好的生产环境中部署该镜像。</li>
+<li>更轻松的迁移<br>由于Docker确保了执行环境的一致性，使得应用的迁移更加容易。</li>
+<li>更轻松的维护和扩展</li>
+</ul>
+<p>Docker对比虚拟机总结<br><img src="https://ws1.sinaimg.cn/large/005GOhIugy1fxq4xctp39j30rt087mxt.jpg" alt="yo"></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>镜像(Image)</li>
+<li>容器(Container)</li>
+<li>仓库(Repository)<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2>Docker分为CE和EE两大版本。CE即社区版(免费，支持周期7个月)，EE即企业版，强调安全，付费使用，支持周期24个月。<br>Docker CE分为stable, test和nightly三个更新频道。每六个月发布一个stable版本。</li>
+</ul>
+
   </div>
 </article>
 
@@ -193,7 +211,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker与传统虚拟化方式的不同"><span class="toc-number">1.</span> <span class="toc-text">Docker与传统虚拟化方式的不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker的优势"><span class="toc-number">2.</span> <span class="toc-text">Docker的优势</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker与传统虚拟化方式的不同"><span class="toc-number">1.</span> <span class="toc-text">Docker与传统虚拟化方式的不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker的优势"><span class="toc-number">2.</span> <span class="toc-text">Docker的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">3.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Docker"><span class="toc-number">4.</span> <span class="toc-text">安装Docker</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
