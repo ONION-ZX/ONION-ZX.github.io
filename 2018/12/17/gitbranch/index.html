@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="实际工作中常见用的工作流程: 开发某个网站 为实现某个新的需求，创建一个分支 在这个分支上开展工作  突然有个很重要的问题需要紧急修补 可以这样处理: 返回到原先已经发布到生产服务器上的分支 为这次紧急修补建立一个新分支，并在其中修复问题 通过测试后，回到生产服务器所在的分支，将修补分支合并进来，然后再推送到生产服务器上。 切换到之前实现新需求的分支，继续工作  新建分支并切换:新建并切换到分支">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git分支学习">
+<meta property="og:url" content="http://yoursite.com/2018/12/17/gitbranch/index.html">
+<meta property="og:site_name" content="Onion·Space">
+<meta property="og:description" content="实际工作中常见用的工作流程: 开发某个网站 为实现某个新的需求，创建一个分支 在这个分支上开展工作  突然有个很重要的问题需要紧急修补 可以这样处理: 返回到原先已经发布到生产服务器上的分支 为这次紧急修补建立一个新分支，并在其中修复问题 通过测试后，回到生产服务器所在的分支，将修补分支合并进来，然后再推送到生产服务器上。 切换到之前实现新需求的分支，继续工作  新建分支并切换:新建并切换到分支">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-17T04:04:05.400Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git分支学习">
+<meta name="twitter:description" content="实际工作中常见用的工作流程: 开发某个网站 为实现某个新的需求，创建一个分支 在这个分支上开展工作  突然有个很重要的问题需要紧急修补 可以这样处理: 返回到原先已经发布到生产服务器上的分支 为这次紧急修补建立一个新分支，并在其中修复问题 通过测试后，回到生产服务器所在的分支，将修补分支合并进来，然后再推送到生产服务器上。 切换到之前实现新需求的分支，继续工作  新建分支并切换:新建并切换到分支">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Git分支学习</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Onion·Space</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="https://onion-zx.github.io">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/ONION-ZX">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/12/06/api_rule/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$("#i-next").toggle();" onmouseout="$("#i-next").toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$("#i-top").toggle();" onmouseout="$("#i-top").toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$("#i-share").toggle();" onmouseout="$("#i-share").toggle();" onclick="$("#share").toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/17/gitbranch/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/17/gitbranch/&text=Git分支学习"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/17/gitbranch/&is_video=false&description=Git分支学习"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Git分支学习&body=Check out this article: http://yoursite.com/2018/12/17/gitbranch/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/17/gitbranch/&name=Git分支学习&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实际工作中常见用的工作流程"><span class="toc-number">1.</span> <span class="toc-text">实际工作中常见用的工作流程:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#突然有个很重要的问题需要紧急修补-可以这样处理"><span class="toc-number">2.</span> <span class="toc-text">突然有个很重要的问题需要紧急修补 可以这样处理:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建分支并切换"><span class="toc-number">3.</span> <span class="toc-text">新建分支并切换:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接到紧急修补电话"><span class="toc-number">4.</span> <span class="toc-text">接到紧急修补电话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支的合并"><span class="toc-number">5.</span> <span class="toc-text">分支的合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遇到冲突时的分支合并"><span class="toc-number">6.</span> <span class="toc-text">遇到冲突时的分支合并</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Git分支学习
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">Onion·Space</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-12-17T02:30:05.272Z" itemprop="datePublished">2018-12-17</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="实际工作中常见用的工作流程"><a href="#实际工作中常见用的工作流程" class="headerlink" title="实际工作中常见用的工作流程:"></a>实际工作中常见用的工作流程:</h2><ol>
+<li>开发某个网站</li>
+<li>为实现某个新的需求，创建一个分支</li>
+<li>在这个分支上开展工作</li>
+</ol>
+<h2 id="突然有个很重要的问题需要紧急修补-可以这样处理"><a href="#突然有个很重要的问题需要紧急修补-可以这样处理" class="headerlink" title="突然有个很重要的问题需要紧急修补 可以这样处理:"></a>突然有个很重要的问题需要紧急修补 可以这样处理:</h2><ol>
+<li>返回到原先已经发布到生产服务器上的分支</li>
+<li>为这次紧急修补建立一个新分支，并在其中修复问题</li>
+<li>通过测试后，回到生产服务器所在的分支，将修补分支合并进来，然后再推送到生产服务器上。</li>
+<li>切换到之前实现新需求的分支，继续工作</li>
+</ol>
+<h2 id="新建分支并切换"><a href="#新建分支并切换" class="headerlink" title="新建分支并切换:"></a>新建分支并切换:</h2><p>新建并切换到分支 <code>git checkout -b 分支名</code><br>相当于执行了这两条 <code>git branch 分支名</code> <code>git checkout 分支名</code></p>
+<h2 id="接到紧急修补电话"><a href="#接到紧急修补电话" class="headerlink" title="接到紧急修补电话"></a>接到紧急修补电话</h2><p>在开始修补之前，留心暂存区或者工作目录中还没有提交的修改，它会和即将检出的分支产生冲突从而阻止Git为我们切换分支。所以切换分支的时候最好保持一个清洁的工作区域。<br>提交了所有的修改后，切换到master分支。<br><code>git checkout master</code><br>这一点值得牢记: Git会把工作目录的内容恢复为检出某分支时它所指向的那个提交对象的快照。它会自动添加、删除和修改文件以确保目录的内容和我们当时提交时完全一样。<br>接下来进行紧急修补。创建一个紧急修补分支hotfix来开展工作。<br><code>git checkout -b hotfix</code><br><code>git commit -a -m &#39;fixed&#39;</code><br>有必要做些测试确保修补成功，然后回到master分支把它合并起来，然后发布到生产服务器。<br><code>git checkout master</code><br><code>git merge hotfix</code><br>合并时出现了”Fast forward”的提示。由于当前master分支所在的提交对象是要并入的hotfix分支的直接上游，Git只需把master分支指针直接右移。因为这种单线的历史分支不存在任何需要解决的分歧，所以这种合并过程可以成为快进(Fast forward)。<br>发布完修补后，想要回到被打扰之前的工作。由于当前hotfix分支和master都指向相同的提交对象，所以hotfix已经完成了历史使命，可以删掉了。<br><code>git branch -d hotfix</code><br>然后回到之前未完成的iss5问题修复分支上继续工作<br><code>git checkout iss5</code><br>iss5分支可以不受影响继续推进。<br>值得注意的是之前hotfix分支的修改内容尚未包含到iss5中来。如果需要纳入此次修补，可以用<code>git merge master</code>把master分支合并到iss5；或者等iss5完成之后，再将iss5中的更新并入master。</p>
+<h2 id="分支的合并"><a href="#分支的合并" class="headerlink" title="分支的合并"></a>分支的合并</h2><p>完成iss5的问题后，可以合并回master分支。<br><code>git checkout master</code><br><code>git merge iss5</code><br>这次合并操作的底层实现和上次不同。因为这次的开发历史是从更早的地方开始分叉的，由于当前 master 分支所指向的提交对象并不是 iss5分支的直接祖先，Git 不得不进行一些额外处理。就此例而言，Git 会用两个分支的末端以及它们的共同祖先进行一次简单的三方合并计算。</p>
+<p>这次，Git 没有简单地把分支指针右移，而是对三方合并后的结果重新做一个新的快照，并自动创建一个指向它的提交对象。这个提交对象比较特殊，它有两个祖先。<br>合并成功后，iss5分支也没用了。<br><code>git branch -d iss5</code></p>
+<h2 id="遇到冲突时的分支合并"><a href="#遇到冲突时的分支合并" class="headerlink" title="遇到冲突时的分支合并"></a>遇到冲突时的分支合并</h2><p>如果不同分支中修改了同一文件中的同一部分，Git就无法干净地将两者合并在一起(逻辑上说: 这种问题只能由人来裁决)</p>
+<p>出现冲突时，Git会停下来等我们解决冲突。可以<code>git status</code>查阅哪些文件在合并时发生冲突。<br>解决完冲突后，<code>git add</code>将它们标记为已解决状态(实际上就是来一次快照保存到暂存区)，因为一旦暂存，就表示冲突已解决。<br>再运行一次<code>git status</code>来确保所有冲突都已解决。<br>确认好了以后，就可以用<code>git commit -m &quot;...&quot;</code>来完成这次合并提交。</p>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="https://onion-zx.github.io">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/ONION-ZX">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实际工作中常见用的工作流程"><span class="toc-number">1.</span> <span class="toc-text">实际工作中常见用的工作流程:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#突然有个很重要的问题需要紧急修补-可以这样处理"><span class="toc-number">2.</span> <span class="toc-text">突然有个很重要的问题需要紧急修补 可以这样处理:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建分支并切换"><span class="toc-number">3.</span> <span class="toc-text">新建分支并切换:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接到紧急修补电话"><span class="toc-number">4.</span> <span class="toc-text">接到紧急修补电话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支的合并"><span class="toc-number">5.</span> <span class="toc-text">分支的合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遇到冲突时的分支合并"><span class="toc-number">6.</span> <span class="toc-text">遇到冲突时的分支合并</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/17/gitbranch/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/17/gitbranch/&text=Git分支学习"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/17/gitbranch/&is_video=false&description=Git分支学习"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Git分支学习&body=Check out this article: http://yoursite.com/2018/12/17/gitbranch/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/17/gitbranch/&title=Git分支学习"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/17/gitbranch/&name=Git分支学习&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$("#toc-footer").toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$("#share-footer").toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$("#nav-footer").toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 onion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="https://onion-zx.github.io">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/ONION-ZX">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>
