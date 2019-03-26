@@ -1078,17 +1078,18 @@
       
         
           
-            <blockquote>
-<p>最近回归租车项目了，被问到选择做pc还是m，考虑了一分钟后选择了m，原因是以前教我写程序的一个老师说过，选择自己没做过的事情才能成长。虽然租车那边pc我也没咋做过 = = 但觉得m对我来说绝对是更新的领域，应该可以学到更多的东西。然后就是接下来学习移动端调试方法，在此做个总结。</p>
-</blockquote>
-<h1 id="IOS系统"><a href="#IOS系统" class="headerlink" title="IOS系统"></a>IOS系统</h1><h2 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h2><h3 id="运行环境：Mac-Safari浏览器-iPhone"><a href="#运行环境：Mac-Safari浏览器-iPhone" class="headerlink" title="运行环境：Mac + Safari浏览器 + iPhone"></a>运行环境：Mac + Safari浏览器 + iPhone</h3><h3 id="调试步骤："><a href="#调试步骤：" class="headerlink" title="调试步骤："></a>调试步骤：</h3><ol>
-<li>数据线连接iPhone和Mac</li>
-<li>iPhone开启Web检查器（设置 -&gt; Safari -&gt; 高级 -&gt; 开启Web检查器）</li>
-<li>iPhone使用Safari浏览器打开要调试的页面</li>
-<li>Mac打开Safari浏览器调试（菜单栏 -&gt; 开发 -&gt; iPhone设备名 -&gt; 选择调试页面）</li>
-</ol>
-
           
+最近回归租车项目了，被问到选择做pc还是m，考虑了一分钟后选择了m，原因是以前教我写程序的一个老师说过，选择自己没做过的事情才能成长。虽然租车那边pc我也没咋做过 = = 但觉得m对我来说绝对是更新的领域，应该可以学到更多的东西。然后就是接下来学习移动端调试方法，在此做个总结。
+
+IOS系统方案一
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/06/mobile-debug/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1229,46 +1230,22 @@
       
         
           
-            <h2 id="开发阶段"><a href="#开发阶段" class="headerlink" title="开发阶段"></a>开发阶段</h2><p>在本地新建分支进行开发 分支名为feature-xxx</p>
-<ol>
-<li>应该避免一切可能影响到其它页面样式的修改</li>
-<li>慎用或者禁用important</li>
-<li>单语言开发后需切换到其它语言查看是否受到影响</li>
-<li>订单确认页的重现(下个预付测试单即可)</li>
-</ol>
-<h2 id="打包阶段"><a href="#打包阶段" class="headerlink" title="打包阶段"></a>打包阶段</h2><p>开发完毕后需要打包<br>如果多个页面做了修改 退回到pages目录 跑命令<code>npm run build-all</code><br>如果打包单个页面 到该页面存在的目录 跑命令<code>sh build.sh</code></p>
-<h2 id="提交阶段"><a href="#提交阶段" class="headerlink" title="提交阶段"></a>提交阶段</h2><p>将本地分支提交到远程<br>git add . &amp;&amp; git commit -m “写清楚提交了什么内容” &amp;&amp; git push –set-upstream origin 分支名(若分支已存在直接push即可)</p>
-<ol>
-<li>拉代码时需要切换到SSH协议<br>以前习惯直接使用http协议拉代码 所以拉取工作项目仓库时未切换到SSH协议 导致后面打包完推代码到远程仓库 sourcetree显示信息: 超前两个版本 这就表示推代码到远程仓库失败了<br>所以需要后续设置ssh<br>首先需要生成本地SSH KEY</li>
-</ol>
-<ul>
-<li><p>打开终端查看是否已经存在SSH密钥</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成新的密钥</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C "youremail@example.com"</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>换成自己的邮箱 然后一路回车 即可生成SSH key</p>
-<ul>
-<li>进入ssh目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这个目录下存在三个文件<code>id_rsa</code>(私钥文件)、<code>id_rsa.pub</code>(公钥ssh key)、<code>known_hosts</code>(对所有用户都可新来的远程主机的公钥)。<br>将id_rsa.pub中的内容全部复制到服务器端 保存即可。</p>
-<ul>
-<li><p>复制命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbcopy &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置远程仓库的地址为SSH协议下的URL，再推代码就OK了。</p>
-</li>
-</ul>
-<ol start="2">
-<li>提交代码前要记得review一下!!!!千万不要把没用的代码提交到远程</li>
-<li>推完后到gitlab或者sourcetree看一下是否将打包后的代码成功提交到远程</li>
-</ol>
-<h2 id="测试发布阶段"><a href="#测试发布阶段" class="headerlink" title="测试发布阶段"></a>测试发布阶段</h2><p>部署成功后 切换到自己新建的测试环境 在该测试环境下测试自己修改的内容 若无问题则在工作台将需求转测试状态<br>转测试之后 跟进测试进度 测试通过后 拉日期分支 然后合并 再推</p>
+          开发阶段在本地新建分支进行开发 分支名为feature-xxx
 
-          
+应该避免一切可能影响到其它页面样式的修改
+慎用或者禁用important
+单语言开发后需切换到其它语言查看是否受到影响
+订单确认页的重现(下个预付测试单即可)
+
+打包阶段开发完毕后需要打包如果多个页面做了修改 退回到pages目录 跑
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/03/work01/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1409,51 +1386,17 @@
       
         
           
-            <h2 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h2><p>flex-direction / flex-wrap / flex-flow /  justify-content / align-items / align-content</p>
-<ul>
-<li>flex-direction<br>表示项目的排列方向: row | row-reverse | column | column-reverse</li>
-<li>flex-wrap<br>表示如果一条轴线排不下如何换行:   <pre><code>nowrap(默认) 不换行
-wrap 换行 第一行在上方
-wrap-reverse 换行 第一行在下方
-</code></pre></li>
-<li>flex-flow<br>flex-direction和flex-wrap的简写形式 默认值为row nowrap</li>
-<li>justify-content<br>定义项目在主轴上的对齐方式: <pre><code>flex-start 左对齐
-flex-end 右对齐
-center 水平居中
-space-between 两端对齐 项目之间的间隔相等
-space-around 每个项目两侧的间隔相等 所以 项目之间的间隔比项目与边框的间隔大一倍
-</code></pre></li>
-<li>align-items<br>定义项目在交叉轴上的对齐方式: <pre><code>flex-start 上对齐
-flex-end 下对齐
-center 交叉轴中点对齐
-baseline 项目的第一行文字的基线对齐
-stretch 如果项目未设置高度或设为auto 将占满整个容器的高度
-</code></pre></li>
-<li>align-content<br>定义多根轴线的对齐方式: <pre><code>flex-start 上对齐
-flex-end 下对齐
-center 交叉轴中点对齐
-space-between 与交叉轴两端对齐 轴线之间的间隔平均分布
-space-around 每根轴线两侧的间隔都相等 所以 轴线之间的间隔比轴线与边框的间隔大一倍
-stretch(默认) 轴线占满整个交叉轴
-</code></pre></li>
-</ul>
-<h2 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h2><p>order / flex-grow / flex-shrink / flex-basis / flex / align-self</p>
-<ul>
-<li>order<br>定义项目的排列顺序。数值越小，排列越靠前，默认为0。</li>
-<li>flex-grow<br>定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。<br>如果所有项目的flex-grow属性都为1，并且有剩余空间的画，它们将等分剩余空间。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</li>
-<li>flex-shrink<br>定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。<br>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</li>
-<li>flex-basis<br>定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。<br>flex-basis:  length | auto;</li>
-<li>flex<br>flex-grow flex-shrink和flex-basis的缩写，默认值为0 1 auto。后面两个属性可选。<br>该属性的两个快捷值 auto(1 1 auto)和 none(0 0 auto)。<br>建议优先使用</li>
-<li>align-self<br>允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。<pre><code>auto
-flex-start
-flex-end
-center
-baseline
-stretch
-</code></pre>除了auto外，其余都与align-item属性一致。</li>
-</ul>
+          容器的属性flex-direction / flex-wrap / flex-flow /  justify-content / align-items / align-content
 
-          
+flex-direction表示项目的排列方向: row | row-reverse | column | co
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/03/flex/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1594,9 +1537,15 @@ stretch
       
         
           
-            <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>This Is Title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="webkit内核的实现"><a href="#webkit内核的实现" class="headerlink" title="webkit内核的实现"></a>webkit内核的实现</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#C87878</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">1px</span> <span class="number">1px</span> <span class="number">0px</span> <span class="built_in">rgba</span>(0,0,0,0.18);</span><br><span class="line">  <span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis; <span class="comment">/*表示超出盒子的部分使用省略号表示*/</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box; <span class="comment">/*设置块元素的布局为伸缩布局*/</span></span><br><span class="line">  <span class="attribute">-webkit-line-clamp</span>: <span class="number">6</span>; <span class="comment">/*设置块元素包含的文本行数*/</span></span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          123456&lt;div class="content"&gt;  &lt;h3&gt;This Is Title&lt;/h3&gt;  &lt;p&gt;    Lorem Ipsum is simply dummy text of the printing and typesetting i
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/27/css01/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1737,24 +1686,15 @@ stretch
       
         
           
-            <h2 id="是什么和为什么"><a href="#是什么和为什么" class="headerlink" title="是什么和为什么"></a>是什么和为什么</h2><p>在了解webpack是什么之前，我们需要知道前端的一个巨大的坑————浏览器在解析JS的时候有一个盲点，它并没有做到解析其它语言时的模块化，一个文件要给另一个文件暴露数据或者变量，只能将它定义在全局作用域下，没有其它的办法。所以归根结底就是我们web标准的问题，在一开始的时候没有考虑到文件之间共享代码/数据的问题。webpack解决的就是这个问题，我们用写后端语言的方式写前端的代码，前端就无法识别(因为前端无模块化体系)，webpack就可以做到动态地把后端的代码编程浏览器能够读懂的代码，也就是[后端代码前端化]。<br>webpack————用后端的方式让浏览器读懂我们的代码，并且让我们的代码更加模块化。</p>
-<h2 id="webpack4-零模块打包器"><a href="#webpack4-零模块打包器" class="headerlink" title="webpack4 零模块打包器"></a>webpack4 零模块打包器</h2><p>webpack4不需要配置文件!!!!!!yeah</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于webpack是跑在node环境下的，所以我们首先要安装node(安装node后自带npm命令)。安装完毕后可以输入命令<code>node -v</code>和<code>npm -v</code>查看版本号。如果有版本信息证明安装成功。</p>
-<ul>
-<li>全局安装<br><code>npm i webpack -g</code><br>全局安装完毕后即可在任何一个目录下运行webpack命令。(如:webpack a.js bundle.js 入口文件-a.js 打包后的文件-bundle.js)<br>全局安装的弊端: 有的时候项目中我们写的配置文件可能是针对某一版本的webpack，换一台机器，这台机器全局安装的webpack版本可能与我们项目中想要的webpack版本不一致，这就可能出问题。所以一般比较推荐局部安装。</li>
-<li>局部安装<br>首先进入项目目录，输入命令<code>npm init -y</code>，生成一个package.json文件，生成这个文件后，npm就会认为整个目录就是一个项目/模块了。然后在当前目录下安装webpack。输入命令<code>npm i webpack -D</code>或者<code>npm i webpack --save-dev</code>。安装完webpack后我们还需要webpack-cli。输入命令<code>npm i webpack-cli --save-dev</code>。安装完毕后我们就会在package.json中看到版本信息了。以后我们的项目运行在其它平台上，只需要<code>npm install</code>就可以了。<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2>打开package.json，添加一个build(构建)脚本:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "build":"webpack",</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>然后<code>npm run build</code>。会发现报错信息: <code>ERROR in Entry module not found: Error: Can&#39;t resolve &#39;./src&#39; in &#39;~/webpack-4-quickstart&#39;</code>。<br>这是因为webpack4在./src中寻找entry point(入口点)。也就是说entry point是webpack寻找开始构建Javascript包的文件。在以前版本的 webpack 中，必须在名为 webpack.config.js 的配置文件中通过entry属性定义entry point(入口点) 。但是从webpack4 开始，不再必须定义entry point(入口点)，它将默认为 ./src/index.js!!!!<br>在webpack4中，既不需要定义entry point(入口点)，也不需要定义output file(输出文件)。<br><em>它将查找./src/index.js作为默认入口点，而且，它将在./dist/main.js输出模块包。</em></p>
-<h2 id="entry和output"><a href="#entry和output" class="headerlink" title="entry和output"></a>entry和output</h2><p>当业务逻辑比较复杂，可能有不止一页，这时我们就需要多入口和多出口:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        home: <span class="string">'./js/home.js'</span>, <span class="comment">//首页的入口文件</span></span><br><span class="line">        signup: <span class="string">'./js/signup.js'</span>, <span class="comment">//注册页的入口文件</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">        path: __dirname + <span class="string">'/dist'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>ES6写法<br>直接解构，将对象中的键编程一个变量，可以直接用。更加简洁~<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在index.js中</span></span><br><span class="line"><span class="keyword">var</span> open = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">export</span> &#123;open&#125;;</span><br><span class="line"><span class="comment">//在home.js中</span></span><br><span class="line"><span class="keyword">import</span> &#123;open&#125; <span class="keyword">from</span> <span class="string">'./index.js'</span>;</span><br></pre></td></tr></table></figure></p>
-<h2 id="production-生产-和development-开发-模式-webpack4"><a href="#production-生产-和development-开发-模式-webpack4" class="headerlink" title="production(生产)和development(开发)模式-webpack4"></a>production(生产)和development(开发)模式-webpack4</h2><p>打开package.json并填充scripts部分<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"dev"</span>: <span class="string">"webpack --mode development"</span>,</span><br><span class="line">  <span class="string">"build"</span>: <span class="string">"webpack --mode production"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行<code>npm run dev</code>。会生成一个未压缩的bundle文件。<br>运行<code>npm run build</code>。会生成一个压缩后的bundle文件。<br>production mode(生产模式)可以开箱即用地进行各种优化。包括压缩，作用域提升，tree-shaking等。<br>development mode(开发模式)针对速度进行了优化，仅仅提供了一种不压缩的 bundle 。</p>
-<p>所以在 webpack 4中，可以在没有一行配置的情况下完成任务！只需定义–mode参数即可免费获得所有内容。</p>
-<h2 id="覆盖默认entry-入口-和output-出口-webpack4"><a href="#覆盖默认entry-入口-和output-出口-webpack4" class="headerlink" title="覆盖默认entry(入口)和output(出口)-webpack4"></a>覆盖默认entry(入口)和output(出口)-webpack4</h2><p>打开package.json<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">  "dev": "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js",</span><br><span class="line">  "build": "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h2><p>webpack本身就能理解js，所以import JS时不需要loader，如果我们import的是其它东西就需要用到loader，比如import ‘./css/base.css’。这时我们就需要指挥webpack如何加载这个css文件。这就是loader的职责。<br>CSS用css-loader和style-loader，在使用之前我们需要安装。<br>npm i css-loader style-loader -D<br>安装完毕之后我们就需要在webpack.config.js中进行配置:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">        &#123;</span><br><span class="line">            test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">            <span class="comment">//css-loader 将css文件编译成webpack可以理解的形式 </span></span><br><span class="line">            <span class="comment">//style-loader 将编译之后的代码插入到head中</span></span><br><span class="line">            <span class="comment">// 从右往左加载</span></span><br><span class="line">            use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>], </span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          是什么和为什么在了解webpack是什么之前，我们需要知道前端的一个巨大的坑————浏览器在解析JS的时候有一个盲点，它并没有做到解析其它语言时的模块化，一个文件要给另一个文件暴露数据或者变量，只能将它定义在全局作用域下，没有其它的办法。所以归根结底就是我们web标准的问题，在一开始的时候没有考虑到
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/26/webpack/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1895,10 +1835,17 @@ stretch
       
         
           
-            <h2 id="查询CPU型号"><a href="#查询CPU型号" class="headerlink" title="查询CPU型号"></a>查询CPU型号</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -n machdep.cpu.brand_string</span><br></pre></td></tr></table></figure>
-<h2 id="解压-rar文件"><a href="#解压-rar文件" class="headerlink" title="解压.rar文件"></a>解压.rar文件</h2><p>安装unrar -&gt; 进入rar文件目录 -&gt; 解压 -&gt; 此时解压后的文件与.rar文件在同一目录下<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install unrar </span><br><span class="line">unrar x yo.rar</span><br></pre></td></tr></table></figure></p>
+          查询CPU型号1sysctl -n machdep.cpu.brand_string
+解压.rar文件安装unrar -&gt; 进入rar文件目录 -&gt; 解压 -&gt; 此时解压后的文件与.rar文件在同一目录下12brew install unrar unrar x yo.rar
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/13/mac01/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
