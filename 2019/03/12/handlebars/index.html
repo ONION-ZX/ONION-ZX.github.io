@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="Onion·Space">
 <meta property="og:description" content="最简单的用法12345678&amp;lt;div&amp;gt;    &amp;lt;h1&amp;gt;        &amp;#123;&amp;#123;title&amp;#125;&amp;#125;    &amp;lt;/h1&amp;gt;    &amp;lt;p&amp;gt;        &amp;#123;&amp;#123;content&amp;#125;&amp;#125;    &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 嵌入数据1234const template = requi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-14T08:57:07.885Z">
+<meta property="og:updated_time" content="2019-03-26T08:05:01.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="handlebars前端模板学习">
 <meta name="twitter:description" content="最简单的用法12345678&amp;lt;div&amp;gt;    &amp;lt;h1&amp;gt;        &amp;#123;&amp;#123;title&amp;#125;&amp;#125;    &amp;lt;/h1&amp;gt;    &amp;lt;p&amp;gt;        &amp;#123;&amp;#123;content&amp;#125;&amp;#125;    &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 嵌入数据1234const template = requi">
@@ -196,6 +196,36 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -284,8 +314,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-14T16:57:07+08:00">
-                2019-03-14
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T16:05:01+08:00">
+                2019-03-26
               </time>
             
           </span>
@@ -353,6 +383,7 @@
         <h1 id="最简单的用法"><a href="#最简单的用法" class="headerlink" title="最简单的用法"></a>最简单的用法</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        &#123;&#123;title&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        &#123;&#123;content&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>嵌入数据<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> template = <span class="built_in">require</span>(<span class="string">'Handlebars'</span>).template;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> context = &#123;<span class="attr">title</span>: <span class="string">'Yo'</span>, <span class="attr">content</span>: <span class="string">"Hello world!"</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> html = template(context);</span><br></pre></td></tr></table></figure></p>
 <p>生成结果<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        Yo</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        Hello world!</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h1 id="嵌入html"><a href="#嵌入html" class="headerlink" title="嵌入html"></a>嵌入html</h1><p>如果想要嵌入的值不需要改变则直接使用三个花括号。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        &#123;&#123;title&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        &#123;&#123;&#123;body&#125;&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="块级表达式"><a href="#块级表达式" class="headerlink" title="块级表达式"></a>块级表达式</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;#list people&#125;&#125; &#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125; &#123;&#123;/list&#125;&#125;</span><br></pre></td></tr></table></figure>
 <p>嵌入如下数据<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    people: [</span><br><span class="line">        &#123;firstName: 'wang', lastName: 'hh'&#125;,</span><br><span class="line">        &#123;firstName: 'li', lastName: 'sd'&#125;,</span><br><span class="line">        &#123;firstName: 'zhao', lastName: 'ks'&#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -499,7 +530,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -509,10 +540,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -520,10 +551,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">16</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 

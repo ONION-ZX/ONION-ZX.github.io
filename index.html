@@ -193,6 +193,36 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -457,7 +487,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T15:48:57+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T16:18:38+08:00">
                 2019-03-26
               </time>
             
@@ -535,34 +565,17 @@
 
       
         
-          
-            <p><em>开始学前端的时候，觉得CSS倍儿简单好玩。可自打工作以来，发现自己总是出现CSS上面遇到难题。原因在于从来没有系统的学过这门知识，掌握的也都只是常用的，所以一旦出现意外情况，就两眼一抹黑，找不到解决方案了。所以要想成为一名合格前端，CSS知识也得抓紧补起来。本篇主要记录一些零散的CSS知识，系统学习笔记会额外开一片博文记录。</em></p>
-<h1 id="z-index失效问题"><a href="#z-index失效问题" class="headerlink" title="z-index失效问题"></a>z-index失效问题</h1><blockquote>
-<p>首先需要知道：</p>
-<ol>
-<li>z-index属性只作用在被定位了的元素上。所以如果在一个没被定位的元素上使用z-index的话，是不会有效果的。</li>
-<li>同一个父元素下的元素的层叠效果会受父元素的z-index影响，如果父元素的z-index值很小，那么子元素的z-index值很大也不起作用。</li>
-</ol>
-</blockquote>
-<p>失效的情况：</p>
-<ol>
-<li>父标签 position属性为relative</li>
-<li>问题标签无position属性（不包括static）</li>
-<li>问题标签含有浮动(float)属性</li>
-<li>问题标签的祖先标签的z-index值比较小</li>
-</ol>
-<p>解决方案：</p>
-<ol>
-<li>position:relative改为position:absolute；</li>
-<li>浮动元素添加position属性（如relative，absolute等）；</li>
-<li>去除浮动。</li>
-<li>提高父标签的z-index值</li>
-</ol>
-
-          
+          <p><em>开始学前端的时候，觉得CSS倍儿简单好玩。可自打工作以来，发现自己总是出现CSS上面遇到难题。原因在于从来没有系统的学过这门知识，掌握的也都只是常用的，所以一旦出现意外情况，就两眼一抹黑，找不到解决方案了。所以要想成为一名合格前端，CSS知识也得抓紧补起来。本篇主要记录一些零散的CSS知识，系统学习笔记会额外开一片博文记录。</em><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/18/css-sum/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
@@ -654,8 +667,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-14T16:58:22+08:00">
-                2019-03-14
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T16:04:42+08:00">
+                2019-03-26
               </time>
             
           </span>
@@ -721,17 +734,17 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>quickskin的工作方式类似于一个”模板编译器”，将模板转换为可执行的PHP脚本。当一个模板第一次被使用时，模板内所有的占位符均被替换为简单的可输出指定内容的PHP代码元素。如HTML模板片段:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;TITLE&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>将被转换为<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h3&gt;<span class="meta">&lt;?php</span> <span class="keyword">echo</span> $TITLE; <span class="meta">?&gt;</span>&lt;/h3&gt;</span><br></pre></td></tr></table></figure></p>
-<h1 id="一些常用实例"><a href="#一些常用实例" class="headerlink" title="一些常用实例"></a>一些常用实例</h1><ol>
-<li>循环语句</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> student_list = [</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">'whh'</span>,</span><br><span class="line">        age: <span class="number">18</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">'lsd'</span>,</span><br><span class="line">        age: <span class="number">19</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">'zks'</span>,</span><br><span class="line">        age: <span class="number">20</span>,</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- BEGIN student_list --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"student-item"</span>&gt;</span>&#123;name&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- END special_tips_list --&gt;</span></span><br></pre></td></tr></table></figure>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/12/quickskin/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -826,8 +839,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-14T16:57:07+08:00">
-                2019-03-14
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T16:05:01+08:00">
+                2019-03-26
               </time>
             
           </span>
@@ -893,40 +906,16 @@
 
       
         
-          
-            <h1 id="最简单的用法"><a href="#最简单的用法" class="headerlink" title="最简单的用法"></a>最简单的用法</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        &#123;&#123;title&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        &#123;&#123;content&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h1 id="最简单的用法"><a href="#最简单的用法" class="headerlink" title="最简单的用法"></a>最简单的用法</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        &#123;&#123;title&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        &#123;&#123;content&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>嵌入数据<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> template = <span class="built_in">require</span>(<span class="string">'Handlebars'</span>).template;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> context = &#123;<span class="attr">title</span>: <span class="string">'Yo'</span>, <span class="attr">content</span>: <span class="string">"Hello world!"</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> html = template(context);</span><br></pre></td></tr></table></figure></p>
 <p>生成结果<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        Yo</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        Hello world!</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="嵌入html"><a href="#嵌入html" class="headerlink" title="嵌入html"></a>嵌入html</h1><p>如果想要嵌入的值不需要改变则直接使用三个花括号。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        &#123;&#123;title&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        &#123;&#123;&#123;body&#125;&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="块级表达式"><a href="#块级表达式" class="headerlink" title="块级表达式"></a>块级表达式</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;#list people&#125;&#125; &#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125; &#123;&#123;/list&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p>嵌入如下数据<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    people: [</span><br><span class="line">        &#123;firstName: 'wang', lastName: 'hh'&#125;,</span><br><span class="line">        &#123;firstName: 'li', lastName: 'sd'&#125;,</span><br><span class="line">        &#123;firstName: 'zhao', lastName: 'ks'&#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>创建一个helper函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HandleBars.registerHelper(<span class="string">'list'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">items, options</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> out = <span class="string">'&lt;ul&gt;'</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; items.length; i++)&#123;</span><br><span class="line">        out = out + <span class="string">'&lt;li&gt;'</span> + options.fn(items[i]) + <span class="string">'&lt;/li&gt;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> out + <span class="string">'&lt;/ul&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>编译后即可生成html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>wang hh<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>li sd<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>zhao ks<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>模板数据<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> content = &#123;</span><br><span class="line">    title: <span class="string">"Hello"</span>,</span><br><span class="line">    author: &#123;</span><br><span class="line">        name: <span class="string">"onion"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        &#123;&#123;title&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span></span><br><span class="line">        By &#123;&#123;author.name&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"entry"</span>&gt;</span></span><br><span class="line">  &#123;&#123;! 我是注释 &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="Helpers"><a href="#Helpers" class="headerlink" title="Helpers"></a>Helpers</h1><p><code>Handlebars.registerHelper</code>方法自定义Helper方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> article = &#123;</span><br><span class="line">    author: &#123;</span><br><span class="line">        firstName: <span class="string">'wang'</span>,</span><br><span class="line">        lastName: <span class="string">'huahua'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    content: <span class="string">"I'm whh"</span>,</span><br><span class="line">&#125;</span><br><span class="line">Handlebars.registerHelper(<span class="string">'getFullname'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">person</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> person.firstName + <span class="string">" "</span> + person.lastName;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"article"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>By &#123;&#123;getFullname author&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>&#123;&#123;content&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>输出结果为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"article"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>By wang huahua<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>I'm whh<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="内置helper"><a href="#内置helper" class="headerlink" title="内置helper"></a>内置helper</h1><p><a href="http://handlebarsjs.com/builtin_helpers.html" target="_blank" rel="noopener">如if each等等</a></p>
-<h1 id="一些常用实例"><a href="#一些常用实例" class="headerlink" title="一些常用实例"></a>一些常用实例</h1><ol>
-<li><p>引入组件模板</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&gt; common-header.hbs&#125;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>if … else</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;#if a &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        content1 </span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;&#123;else &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        content2</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;&#123;/if &#125;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>compare</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;#compare msg "!==" ""&#125;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>each</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;#each imgList&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;url&#125;&#125;"</span>&gt;</span></span><br><span class="line">&#123;&#123;/each&#125;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>index（添加索引）</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;#each studentList&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">data-index</span>=<span class="string">"&#123;&#123;@index&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123;&#123;/each&#125;&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/12/handlebars/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1098,461 +1087,6 @@
 <li>iPhone使用Safari浏览器打开要调试的页面</li>
 <li>Mac打开Safari浏览器调试（菜单栏 -&gt; 开发 -&gt; iPhone设备名 -&gt; 选择调试页面）</li>
 </ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/12/error/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onion">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Onion·Space">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/12/error/" itemprop="url">Error.name值的对应信息</a></h1>
-        
-
-        <div class="post-meta">
-        
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-12T14:15:34+08:00">
-                2019-02-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified&#58;</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2019-02-12T14:19:43+08:00">
-                2019-02-12
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/12/error/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/12/error/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>EvalError：eval()的使用与定义不一致</li>
-<li>RangeError：数值越界</li>
-<li>ReferenceError：非法或不能识别的引用数值</li>
-<li>SyntaxError：发生语法解析错误</li>
-<li>TypeError：操作数类型错误</li>
-<li>URIError：URI处理函数使用不当</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/gitbranch/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onion">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Onion·Space">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/17/gitbranch/" itemprop="url">Git分支学习</a></h1>
-        
-
-        <div class="post-meta">
-        
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-17T10:30:05+08:00">
-                2018-12-17
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified&#58;</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-12-17T12:04:05+08:00">
-                2018-12-17
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/17/gitbranch/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/17/gitbranch/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="实际工作中常见用的工作流程"><a href="#实际工作中常见用的工作流程" class="headerlink" title="实际工作中常见用的工作流程:"></a>实际工作中常见用的工作流程:</h2><ol>
-<li>开发某个网站</li>
-<li>为实现某个新的需求，创建一个分支</li>
-<li>在这个分支上开展工作</li>
-</ol>
-<h2 id="突然有个很重要的问题需要紧急修补-可以这样处理"><a href="#突然有个很重要的问题需要紧急修补-可以这样处理" class="headerlink" title="突然有个很重要的问题需要紧急修补 可以这样处理:"></a>突然有个很重要的问题需要紧急修补 可以这样处理:</h2><ol>
-<li>返回到原先已经发布到生产服务器上的分支</li>
-<li>为这次紧急修补建立一个新分支，并在其中修复问题</li>
-<li>通过测试后，回到生产服务器所在的分支，将修补分支合并进来，然后再推送到生产服务器上。</li>
-<li>切换到之前实现新需求的分支，继续工作</li>
-</ol>
-<h2 id="新建分支并切换"><a href="#新建分支并切换" class="headerlink" title="新建分支并切换:"></a>新建分支并切换:</h2><p>新建并切换到分支 <code>git checkout -b 分支名</code><br>相当于执行了这两条 <code>git branch 分支名</code> <code>git checkout 分支名</code></p>
-<h2 id="接到紧急修补电话"><a href="#接到紧急修补电话" class="headerlink" title="接到紧急修补电话"></a>接到紧急修补电话</h2><p>在开始修补之前，留心暂存区或者工作目录中还没有提交的修改，它会和即将检出的分支产生冲突从而阻止Git为我们切换分支。所以切换分支的时候最好保持一个清洁的工作区域。<br>提交了所有的修改后，切换到master分支。<br><code>git checkout master</code><br>这一点值得牢记: Git会把工作目录的内容恢复为检出某分支时它所指向的那个提交对象的快照。它会自动添加、删除和修改文件以确保目录的内容和我们当时提交时完全一样。<br>接下来进行紧急修补。创建一个紧急修补分支hotfix来开展工作。<br><code>git checkout -b hotfix</code><br><code>git commit -a -m &#39;fixed&#39;</code><br>有必要做些测试确保修补成功，然后回到master分支把它合并起来，然后发布到生产服务器。<br><code>git checkout master</code><br><code>git merge hotfix</code><br>合并时出现了”Fast forward”的提示。由于当前master分支所在的提交对象是要并入的hotfix分支的直接上游，Git只需把master分支指针直接右移。因为这种单线的历史分支不存在任何需要解决的分歧，所以这种合并过程可以成为快进(Fast forward)。<br>发布完修补后，想要回到被打扰之前的工作。由于当前hotfix分支和master都指向相同的提交对象，所以hotfix已经完成了历史使命，可以删掉了。<br><code>git branch -d hotfix</code><br>然后回到之前未完成的iss5问题修复分支上继续工作<br><code>git checkout iss5</code><br>iss5分支可以不受影响继续推进。<br>值得注意的是之前hotfix分支的修改内容尚未包含到iss5中来。如果需要纳入此次修补，可以用<code>git merge master</code>把master分支合并到iss5；或者等iss5完成之后，再将iss5中的更新并入master。</p>
-<h2 id="分支的合并"><a href="#分支的合并" class="headerlink" title="分支的合并"></a>分支的合并</h2><p>完成iss5的问题后，可以合并回master分支。<br><code>git checkout master</code><br><code>git merge iss5</code><br>这次合并操作的底层实现和上次不同。因为这次的开发历史是从更早的地方开始分叉的，由于当前 master 分支所指向的提交对象并不是 iss5分支的直接祖先，Git 不得不进行一些额外处理。就此例而言，Git 会用两个分支的末端以及它们的共同祖先进行一次简单的三方合并计算。</p>
-<p>这次，Git 没有简单地把分支指针右移，而是对三方合并后的结果重新做一个新的快照，并自动创建一个指向它的提交对象。这个提交对象比较特殊，它有两个祖先。<br>合并成功后，iss5分支也没用了。<br><code>git branch -d iss5</code></p>
-<h2 id="遇到冲突时的分支合并"><a href="#遇到冲突时的分支合并" class="headerlink" title="遇到冲突时的分支合并"></a>遇到冲突时的分支合并</h2><p>如果不同分支中修改了同一文件中的同一部分，Git就无法干净地将两者合并在一起(逻辑上说: 这种问题只能由人来裁决)</p>
-<p>出现冲突时，Git会停下来等我们解决冲突。可以<code>git status</code>查阅哪些文件在合并时发生冲突。<br>解决完冲突后，<code>git add</code>将它们标记为已解决状态(实际上就是来一次快照保存到暂存区)，因为一旦暂存，就表示冲突已解决。<br>再运行一次<code>git status</code>来确保所有冲突都已解决。<br>确认好了以后，就可以用<code>git commit -m &quot;...&quot;</code>来完成这次合并提交。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/css02/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onion">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Onion·Space">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/05/css02/" itemprop="url">CSS换行样式备忘</a></h1>
-        
-
-        <div class="post-meta">
-        
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T11:05:28+08:00">
-                2018-12-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified&#58;</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2018-12-05T11:13:52+08:00">
-                2018-12-05
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/05/css02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/05/css02/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="强制不换行"><a href="#强制不换行" class="headerlink" title="强制不换行"></a>强制不换行</h2><p>p { white-space:nowrap; }</p>
-<h2 id="自动换行"><a href="#自动换行" class="headerlink" title="自动换行"></a>自动换行</h2><p>p { word-wrap:break-word; }</p>
-<h2 id="强制英文单词断行"><a href="#强制英文单词断行" class="headerlink" title="强制英文单词断行"></a>强制英文单词断行</h2><p>p { word-break:break-all; }</p>
-<p>*注意：设置强制将英文单词断行，需要将行内元素设置为块级元素。</p>
 
           
         
@@ -1953,11 +1487,456 @@ stretch
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/27/css01/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onion">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Onion·Space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/27/css01/" itemprop="url">纯CSS实现单/多行文本省略</a></h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-27T17:59:34+08:00">
+                2018-11-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-27T18:05:06+08:00">
+                2018-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/27/css01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/27/css01/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>This Is Title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="webkit内核的实现"><a href="#webkit内核的实现" class="headerlink" title="webkit内核的实现"></a>webkit内核的实现</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#C87878</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">1px</span> <span class="number">1px</span> <span class="number">0px</span> <span class="built_in">rgba</span>(0,0,0,0.18);</span><br><span class="line">  <span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis; <span class="comment">/*表示超出盒子的部分使用省略号表示*/</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box; <span class="comment">/*设置块元素的布局为伸缩布局*/</span></span><br><span class="line">  <span class="attribute">-webkit-line-clamp</span>: <span class="number">6</span>; <span class="comment">/*设置块元素包含的文本行数*/</span></span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/webpack/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onion">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Onion·Space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/26/webpack/" itemprop="url">Webpack学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-26T16:37:41+08:00">
+                2018-11-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-11-27T16:58:49+08:00">
+                2018-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/26/webpack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/26/webpack/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="是什么和为什么"><a href="#是什么和为什么" class="headerlink" title="是什么和为什么"></a>是什么和为什么</h2><p>在了解webpack是什么之前，我们需要知道前端的一个巨大的坑————浏览器在解析JS的时候有一个盲点，它并没有做到解析其它语言时的模块化，一个文件要给另一个文件暴露数据或者变量，只能将它定义在全局作用域下，没有其它的办法。所以归根结底就是我们web标准的问题，在一开始的时候没有考虑到文件之间共享代码/数据的问题。webpack解决的就是这个问题，我们用写后端语言的方式写前端的代码，前端就无法识别(因为前端无模块化体系)，webpack就可以做到动态地把后端的代码编程浏览器能够读懂的代码，也就是[后端代码前端化]。<br>webpack————用后端的方式让浏览器读懂我们的代码，并且让我们的代码更加模块化。</p>
+<h2 id="webpack4-零模块打包器"><a href="#webpack4-零模块打包器" class="headerlink" title="webpack4 零模块打包器"></a>webpack4 零模块打包器</h2><p>webpack4不需要配置文件!!!!!!yeah</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于webpack是跑在node环境下的，所以我们首先要安装node(安装node后自带npm命令)。安装完毕后可以输入命令<code>node -v</code>和<code>npm -v</code>查看版本号。如果有版本信息证明安装成功。</p>
+<ul>
+<li>全局安装<br><code>npm i webpack -g</code><br>全局安装完毕后即可在任何一个目录下运行webpack命令。(如:webpack a.js bundle.js 入口文件-a.js 打包后的文件-bundle.js)<br>全局安装的弊端: 有的时候项目中我们写的配置文件可能是针对某一版本的webpack，换一台机器，这台机器全局安装的webpack版本可能与我们项目中想要的webpack版本不一致，这就可能出问题。所以一般比较推荐局部安装。</li>
+<li>局部安装<br>首先进入项目目录，输入命令<code>npm init -y</code>，生成一个package.json文件，生成这个文件后，npm就会认为整个目录就是一个项目/模块了。然后在当前目录下安装webpack。输入命令<code>npm i webpack -D</code>或者<code>npm i webpack --save-dev</code>。安装完webpack后我们还需要webpack-cli。输入命令<code>npm i webpack-cli --save-dev</code>。安装完毕后我们就会在package.json中看到版本信息了。以后我们的项目运行在其它平台上，只需要<code>npm install</code>就可以了。<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2>打开package.json，添加一个build(构建)脚本:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "build":"webpack",</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后<code>npm run build</code>。会发现报错信息: <code>ERROR in Entry module not found: Error: Can&#39;t resolve &#39;./src&#39; in &#39;~/webpack-4-quickstart&#39;</code>。<br>这是因为webpack4在./src中寻找entry point(入口点)。也就是说entry point是webpack寻找开始构建Javascript包的文件。在以前版本的 webpack 中，必须在名为 webpack.config.js 的配置文件中通过entry属性定义entry point(入口点) 。但是从webpack4 开始，不再必须定义entry point(入口点)，它将默认为 ./src/index.js!!!!<br>在webpack4中，既不需要定义entry point(入口点)，也不需要定义output file(输出文件)。<br><em>它将查找./src/index.js作为默认入口点，而且，它将在./dist/main.js输出模块包。</em></p>
+<h2 id="entry和output"><a href="#entry和output" class="headerlink" title="entry和output"></a>entry和output</h2><p>当业务逻辑比较复杂，可能有不止一页，这时我们就需要多入口和多出口:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        home: <span class="string">'./js/home.js'</span>, <span class="comment">//首页的入口文件</span></span><br><span class="line">        signup: <span class="string">'./js/signup.js'</span>, <span class="comment">//注册页的入口文件</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">        path: __dirname + <span class="string">'/dist'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ES6写法<br>直接解构，将对象中的键编程一个变量，可以直接用。更加简洁~<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在index.js中</span></span><br><span class="line"><span class="keyword">var</span> open = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">export</span> &#123;open&#125;;</span><br><span class="line"><span class="comment">//在home.js中</span></span><br><span class="line"><span class="keyword">import</span> &#123;open&#125; <span class="keyword">from</span> <span class="string">'./index.js'</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="production-生产-和development-开发-模式-webpack4"><a href="#production-生产-和development-开发-模式-webpack4" class="headerlink" title="production(生产)和development(开发)模式-webpack4"></a>production(生产)和development(开发)模式-webpack4</h2><p>打开package.json并填充scripts部分<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"dev"</span>: <span class="string">"webpack --mode development"</span>,</span><br><span class="line">  <span class="string">"build"</span>: <span class="string">"webpack --mode production"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行<code>npm run dev</code>。会生成一个未压缩的bundle文件。<br>运行<code>npm run build</code>。会生成一个压缩后的bundle文件。<br>production mode(生产模式)可以开箱即用地进行各种优化。包括压缩，作用域提升，tree-shaking等。<br>development mode(开发模式)针对速度进行了优化，仅仅提供了一种不压缩的 bundle 。</p>
+<p>所以在 webpack 4中，可以在没有一行配置的情况下完成任务！只需定义–mode参数即可免费获得所有内容。</p>
+<h2 id="覆盖默认entry-入口-和output-出口-webpack4"><a href="#覆盖默认entry-入口-和output-出口-webpack4" class="headerlink" title="覆盖默认entry(入口)和output(出口)-webpack4"></a>覆盖默认entry(入口)和output(出口)-webpack4</h2><p>打开package.json<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">  "dev": "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js",</span><br><span class="line">  "build": "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h2><p>webpack本身就能理解js，所以import JS时不需要loader，如果我们import的是其它东西就需要用到loader，比如import ‘./css/base.css’。这时我们就需要指挥webpack如何加载这个css文件。这就是loader的职责。<br>CSS用css-loader和style-loader，在使用之前我们需要安装。<br>npm i css-loader style-loader -D<br>安装完毕之后我们就需要在webpack.config.js中进行配置:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">        &#123;</span><br><span class="line">            test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">            <span class="comment">//css-loader 将css文件编译成webpack可以理解的形式 </span></span><br><span class="line">            <span class="comment">//style-loader 将编译之后的代码插入到head中</span></span><br><span class="line">            <span class="comment">// 从右往左加载</span></span><br><span class="line">            use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>], </span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/mac01/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onion">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Onion·Space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/13/mac01/" itemprop="url">Mac下常用的命令</a></h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-13T10:47:09+08:00">
+                2018-11-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-01-04T10:39:15+08:00">
+                2019-01-04
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/13/mac01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/13/mac01/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="查询CPU型号"><a href="#查询CPU型号" class="headerlink" title="查询CPU型号"></a>查询CPU型号</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -n machdep.cpu.brand_string</span><br></pre></td></tr></table></figure>
+<h2 id="解压-rar文件"><a href="#解压-rar文件" class="headerlink" title="解压.rar文件"></a>解压.rar文件</h2><p>安装unrar -&gt; 进入rar文件目录 -&gt; 解压 -&gt; 此时解压后的文件与.rar文件在同一目录下<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install unrar </span><br><span class="line">unrar x yo.rar</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2005,7 +1984,7 @@ stretch
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2015,10 +1994,10 @@ stretch
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -2026,10 +2005,10 @@ stretch
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">16</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
