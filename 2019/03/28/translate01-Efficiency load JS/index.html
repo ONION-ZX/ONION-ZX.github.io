@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="When loading a script on an HTML page, you need to be careful not to harm the loading performance of the page. Depending on where and how you add your scripts to an HTML page will influence the loadi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="译-使用async和defer有效地加载JS">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/translate01-Efficiency load JS/index.html">
+<meta property="og:site_name" content="Onion·Space">
+<meta property="og:description" content="When loading a script on an HTML page, you need to be careful not to harm the loading performance of the page. Depending on where and how you add your scripts to an HTML page will influence the loadi">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g1jjbf73s0j30vh06wgll.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g1jjbf73s0j30vh06wgll.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g1jjprl8bij30vg06v0sp.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g1jk0cqyorj30vh06z0so.jpg">
+<meta property="og:updated_time" content="2019-03-29T07:27:52.043Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="译-使用async和defer有效地加载JS">
+<meta name="twitter:description" content="When loading a script on an HTML page, you need to be careful not to harm the loading performance of the page. Depending on where and how you add your scripts to an HTML page will influence the loadi">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g1jjbf73s0j30vh06wgll.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/28/translate01-Efficiency load JS/"/>
+
+
+
+
+
+  <title>译-使用async和defer有效地加载JS | Onion·Space</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Onion·Space</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/translate01-Efficiency load JS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onion">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Onion·Space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">译-使用async和defer有效地加载JS</h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-28T17:58:08+08:00">
+                2019-03-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-29T15:27:52+08:00">
+                2019-03-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/28/translate01-Efficiency load JS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/28/translate01-Efficiency load JS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>When loading a script on an HTML page, you need to be careful not to harm the loading performance of the page. Depending on where and how you add your scripts to an HTML page will influence the loading time.</p>
+</blockquote>
+<blockquote>
+<p>将脚本添加到HTML页面的位置和方式将影响加载时间，所以，加载脚本时，需要注意不要影响到页面的加载性能。</p>
+</blockquote>
+<p>When loading a script on an HTML page, you need to be careful not to harm the loading performance of the page.</p>
+<p>在HTML页面中加载脚本时，需要注意不要影响到页面的加载性能。</p>
+<p>A script is traditionally included in the page in this way:</p>
+<p>通常使用这种方式在页面中添加脚本：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"script.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>whenever the HTML parser finds this line, a request will be made to fetch the script, and the script is executed.</p>
+<p>每当HTML解析器找到该行时，将发出一个获取脚本的请求，然后执行脚本。</p>
+<p>Once this process is done, the parsing can resume, and the rest of the HTML can be analyzed.</p>
+<p>完成此进程后就继续解析HTML的其余部分。</p>
+<p>As you can imagine, this operation can have a huge impact on the loading time of the page.</p>
+<p>可以想象，此操作可以会对页面加载时间产生巨大影响。</p>
+<p>If the script takes a little longer to load than expected, for example if the network is a bit slow or if you’re on a mobile device and the connection is a bit sloppy, the visitor will likely see a blank page until the script is loaded and executed.</p>
+<p>如果脚本加载的时间超出预期（比如网速慢或者使用手机连接不稳定），在脚本加载并执行结束前呈献给页面访问者的都是空白页面。</p>
+<h2 id="位置的重要性"><a href="#位置的重要性" class="headerlink" title="位置的重要性"></a>位置的重要性</h2><p>When you first learn HTML, you’re told script tags live in the <head><meta name="generator" content="Hexo 3.8.0"> tag:<br>初学HTML一般在head标签中添加脚本，如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></head></p>
+<p>As I told earlier, when the parser finds this line, it goes to fetch the script and executes it. Then, after it’s done with this task, it goes on to parse the body.</p>
+<p>前面提到，每当HTML解析器找到该行时，将发出一个获取脚本的请求并执行脚本。结束此任务后将继续解析页面中的body部分。</p>
+<p>This is bad because there is a lot of delay introduced. A very common solution to this issue is to put the script tag to the bottom of the page, just before the closing  tag.</p>
+<p>这是一种很糟糕的做法，因为它会产生许多延迟。一个常见的解决方案是将script标签放到页面底部（也就是body结束标签前）。</p>
+<p>Doing so, the script is loaded and executed after all the page is already parsed and loaded, which is a huge improvement over the head alternative.</p>
+<p>这样，在解析和加载所有页面之后加载并执行脚本，是对头部替代方案的巨大改进。</p>
+<p>This is the best thing you can do, if you need to support older browsers that do not support two relatively recent features of HTML: async and defer.</p>
+<p>如果你需要支持不支持两种相对较新的HTML特性的旧浏览器，那么async(异步)和defer(延迟)是你的最佳解决方案。</p>
+<h2 id="Async-和-Defer"><a href="#Async-和-Defer" class="headerlink" title="Async 和 Defer"></a>Async 和 Defer</h2><p>Both async and defer are boolean attributes. Their usage is similar:</p>
+<p>async和defert都是布尔值属性，它们的用法很相似：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>if you specify both, async takes precedence on modern browsers, while older browsers that support defer but not async will fallback to defer.</p>
+<p>如果同时使用两个属性，async则在现代浏览器优先使用，而支持defer而不支持async的旧浏览器将退回为defer。</p>
+<p>These attributes make only sense when using the script in the head portion of the page, and they are useless if you put the script in the body footer like we saw above.</p>
+<p>这两种属性只在我们将script标签放在页面head标签中时起作用，放在页脚中是无效的。</p>
+<h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2><h3 id="head中无async和defer时"><a href="#head中无async和defer时" class="headerlink" title="head中无async和defer时"></a>head中无async和defer时</h3><p>Here’s how a page loads a script without neither defer or async, put in the head portion of the page:</p>
+<p>下图为页面中没有defer或async，并且将脚本放在head标签中时加载页面的效果：</p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1g1jjbf73s0j30vh06wgll.jpg" alt="text"></p>
+<p>The parsing is paused until the script is fetched, and executed. Once this is done, parsing resumes.</p>
+<p>页面解析在请求到脚本时暂停，然后执行脚本。执行结束后，解析继续执行。</p>
+<h3 id="body中无async和defer时"><a href="#body中无async和defer时" class="headerlink" title="body中无async和defer时"></a>body中无async和defer时</h3><p>Here’s how a page loads a script without neither defer or async, put at the end of the body tag, just before it closes:</p>
+<p>下图为页面中没有defer或async，并且将脚本放在body结束标签前时加载页面的效果：</p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1g1jjbf73s0j30vh06wgll.jpg" alt="text"></p>
+<p>The parsing is done without any pauses, and when it finishes, the script is fetched, and executed. Parsing is done before the script is even downloaded, so the page appears to the user way before the previous example.</p>
+<p>解析在没有任何暂停的情况下完成时，获取脚本并执行。甚至在下载脚本之前就已经完成了解析，所以用户可以比前面的示例更早看到页面。</p>
+<h3 id="head中有async时"><a href="#head中有async时" class="headerlink" title="head中有async时"></a>head中有async时</h3><p>Here’s how a page loads a script with async, put in the head tag:</p>
+<p>下图为将带有async属性的脚本标签放在head标签时页面加载的效果：</p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1g1jjprl8bij30vg06v0sp.jpg" alt="text"></p>
+<p>The script is fetched asynchronously, and when it’s ready the HTML parsing is paused to execute the script, then it’s resumed.</p>
+<p>异步获取脚本，当它准备好执行脚本时，将暂停解析HTML，开始执行脚本，脚本执行结束后重新开始解析HTML。</p>
+<h3 id="heade中有defer时"><a href="#heade中有defer时" class="headerlink" title="heade中有defer时"></a>heade中有defer时</h3><p>Here’s how a page loads a script with defer, put in the head tag:</p>
+<p>下图为将带有defer属性的脚本标签放在head标签时页面加载的效果：</p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1g1jk0cqyorj30vh06z0so.jpg" alt="text"></p>
+<p>The script is fetched asynchronously, and it’s executed only after the HTML parsing is done.</p>
+<p>脚本通过异步方式获取，并且在HTML解析完成后才开始执行。</p>
+<p>Parsing finishes just like when we put the script at the end of the body tag, but overall the script execution finishes well before, because the script has been downloaded in parallel with the HTML parsing.</p>
+<p>解析完成就像我们将脚本放在body标记的末尾一样，但总体来说脚本执行再次之前完成更好，因为下载脚本与HTML解析并行进行。</p>
+<p>So this is the winning solution in terms of speed 🏆</p>
+<p>所以这就是速度方面的最佳解决方案 🏆</p>
+<h3 id="阻塞解析"><a href="#阻塞解析" class="headerlink" title="阻塞解析"></a>阻塞解析</h3><p>async blocks the parsing of the page while defer does not.</p>
+<p>async会阻塞页面解析，而defer不会。</p>
+<h3 id="阻塞渲染"><a href="#阻塞渲染" class="headerlink" title="阻塞渲染"></a>阻塞渲染</h3><p>Neither async nor defer guarantee anything on blocking rendering. This is up to you and your script (for example, making sure your scripts run after the onLoad) event.</p>
+<p>async和defer都不保证阻止页面渲染。这取决于你和你的脚本（如：确保你的脚本在onLoad之后运行）事件。</p>
+<h3 id="domInteractive"><a href="#domInteractive" class="headerlink" title="domInteractive"></a>domInteractive</h3><p>Scripts marked defer are executed right after the domInteractive event, which happens after the HTML is loaded, parsed and the DOM is built.</p>
+<p>标记为defer的脚本在dom交互事件之后立即执行，者发生在加载、解析完成HTML并且构建DOM之后。</p>
+<p>CSS and images at this point are still to be parsed and loaded.</p>
+<p>此时的CSS和图像仍然需要解析和加载。</p>
+<p>Once this is done, the browser will emit the domComplete event, and then onLoad.</p>
+<p>加载结束后，浏览器会触发domComplete事件，然后是onLoad事件。</p>
+<p>domInteractive is important because its timing is recognized as a measure of perceived loading speed. See the MDN for more.</p>
+<p>domInteractive很重要，因为它的时间被认为是感知加载速度的量度。更多信息请参阅<a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/domInteractive" target="_blank" rel="noopener">MDN</a>。</p>
+<h2 id="保持顺序"><a href="#保持顺序" class="headerlink" title="保持顺序"></a>保持顺序</h2><p>Another case pro defer: scripts marked async are executed in casual order, when they become available. Scripts marked defer are executed (after parsing completes) in the order which they are defined in the markup.</p>
+<p>标记为async的脚本在可用时按临时顺序执行。标记为defer的脚本按照在表几种定义的顺序执行（在解析完成之后）。</p>
+<h2 id="请直接告诉我最优解"><a href="#请直接告诉我最优解" class="headerlink" title="请直接告诉我最优解"></a>请直接告诉我最优解</h2><p>The best thing to do to speed up your page loading when using scripts is to put them in the head, and add a defer attribute to your script tag:</p>
+<p>使用脚本时，为页面加载提速的最佳方式是将脚本放在head标签中，并且添加defer属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script defer src=<span class="string">"script.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>This is the scenario that triggers the faster domInteractive event.</p>
+<p>这是更快触发domInteractive时间的场景。</p>
+<p>Considering the pros of defer, is seems a better choice over async in a variety of scenarios.</p>
+<p>考虑到defer的优点，在各种场景看起来都比async更好。</p>
+<p>Unless you are fine with delaying the first render of the page, making sure that when the page is parsed the JavaScript you want is already executed.</p>
+<p>除非你想要延迟页面的首次渲染，否则确保在解析页面时你已经执行了所需的JavaScript。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/18/css-sum/" rel="next" title="CSS小记录——持续更新">
+                <i class="fa fa-chevron-left"></i> CSS小记录——持续更新
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="onion" />
+            
+              <p class="site-author-name" itemprop="name">onion</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ONION-ZX" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="zxonion@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#位置的重要性"><span class="nav-number">1.</span> <span class="nav-text">位置的重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Async-和-Defer"><span class="nav-number">2.</span> <span class="nav-text">Async 和 Defer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能对比"><span class="nav-number">3.</span> <span class="nav-text">性能对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#head中无async和defer时"><span class="nav-number">3.1.</span> <span class="nav-text">head中无async和defer时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#body中无async和defer时"><span class="nav-number">3.2.</span> <span class="nav-text">body中无async和defer时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head中有async时"><span class="nav-number">3.3.</span> <span class="nav-text">head中有async时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#heade中有defer时"><span class="nav-number">3.4.</span> <span class="nav-text">heade中有defer时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞解析"><span class="nav-number">3.5.</span> <span class="nav-text">阻塞解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞渲染"><span class="nav-number">3.6.</span> <span class="nav-text">阻塞渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#domInteractive"><span class="nav-number">3.7.</span> <span class="nav-text">domInteractive</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保持顺序"><span class="nav-number">4.</span> <span class="nav-text">保持顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请直接告诉我最优解"><span class="nav-number">5.</span> <span class="nav-text">请直接告诉我最优解</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">onion</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'EVNiUd7DVr6kGsFPOIB78qfI-gzGzoHsz',
+        appKey: '9359Xc0nhmnoPjb60W4gO89L',
+        placeholder: 'Just say something',
+        avatar:'https://ws3.sinaimg.cn/large/005BYqpgly1g1003mayd2j30zk0k0q4c.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
