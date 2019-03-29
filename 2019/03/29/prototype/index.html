@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="昨天发现这篇自己初学半年时写的文章，当时被各种原型链的知识玩懵了，也算是写了这篇文章之后，才对原型链有了更深刻的理解和认识。搬运过来当做复习~  原型(Prototype)——构造器(Constructor)当我们谈论原型，我们在谈论什么——对象。过去，我们这样声明一个对象：1234var a = &amp;#123;    a:1,    b:2&amp;#125;; 当对象是一个用户时：12345var w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复习一下JS中原型的概念">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/prototype/index.html">
+<meta property="og:site_name" content="Onion·Space">
+<meta property="og:description" content="昨天发现这篇自己初学半年时写的文章，当时被各种原型链的知识玩懵了，也算是写了这篇文章之后，才对原型链有了更深刻的理解和认识。搬运过来当做复习~  原型(Prototype)——构造器(Constructor)当我们谈论原型，我们在谈论什么——对象。过去，我们这样声明一个对象：1234var a = &amp;#123;    a:1,    b:2&amp;#125;; 当对象是一个用户时：12345var w">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-29T10:34:56.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="复习一下JS中原型的概念">
+<meta name="twitter:description" content="昨天发现这篇自己初学半年时写的文章，当时被各种原型链的知识玩懵了，也算是写了这篇文章之后，才对原型链有了更深刻的理解和认识。搬运过来当做复习~  原型(Prototype)——构造器(Constructor)当我们谈论原型，我们在谈论什么——对象。过去，我们这样声明一个对象：1234var a = &amp;#123;    a:1,    b:2&amp;#125;; 当对象是一个用户时：12345var w">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/29/prototype/">
+
+
+
+
+
+  <title>复习一下JS中原型的概念 | Onion·Space</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Onion·Space</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/prototype/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onion">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Onion·Space">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">复习一下JS中原型的概念</h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T16:06:18+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-29T18:34:56+08:00">
+                2019-03-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/29/prototype/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/29/prototype/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>昨天发现这篇自己初学半年时写的文章，当时被各种原型链的知识玩懵了，也算是写了这篇文章之后，才对原型链有了更深刻的理解和认识。搬运过来当做复习~</p>
+</blockquote>
+<h2 id="原型-Prototype-——构造器-Constructor"><a href="#原型-Prototype-——构造器-Constructor" class="headerlink" title="原型(Prototype)——构造器(Constructor)"></a>原型(Prototype)——构造器(Constructor)</h2><h3 id="当我们谈论原型，我们在谈论什么——对象。"><a href="#当我们谈论原型，我们在谈论什么——对象。" class="headerlink" title="当我们谈论原型，我们在谈论什么——对象。"></a>当我们谈论原型，我们在谈论什么——对象。</h3><p>过去，我们这样声明一个对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">    a:<span class="number">1</span>,</span><br><span class="line">    b:<span class="number">2</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>当对象是一个用户时：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> whh = &#123;</span><br><span class="line">    name: <span class="string">'王花花'</span>,</span><br><span class="line">    age: <span class="number">18</span>,</span><br><span class="line">    gender: <span class="string">'female'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>当我们需要多一个用户时<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lsd = &#123;</span><br><span class="line">    name: <span class="string">'李拴蛋'</span>,</span><br><span class="line">    age: <span class="number">19</span>,</span><br><span class="line">    gender: <span class="string">'male'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>两个对象的结构毫无区别。<br><em>那么问题来了，如果我们需要创建100个用户时，也要这么做吗？Of Course Not ✘</em><br>两个原因：</p>
+<ol>
+<li>懒。</li>
+<li>用户的信息是动态的，我们不能在代码中把它们写死。</li>
+</ol>
+<h3 id="工厂函数现身"><a href="#工厂函数现身" class="headerlink" title="工厂函数现身"></a>工厂函数现身</h3><p>所以伟大的先人就想到一种办法简化我们的工作：创建一个function专门为我们生成user<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">user</span>(<span class="params">name, age, gender</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line">    person.name = name;</span><br><span class="line">    person.age = age;</span><br><span class="line">    person.gender = gender;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(user(<span class="string">'王花花'</span>, <span class="number">18</span>, <span class="string">'female'</span>)); </span><br><span class="line"><span class="comment">/*&#123;</span></span><br><span class="line"><span class="comment">    name: '王花花',</span></span><br><span class="line"><span class="comment">    age: 18,</span></span><br><span class="line"><span class="comment">    gender: 'female'</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure></p>
+<p>所以，这个名为user的函数的本质就是生成对象。这样的函数被称为工厂函数（Factory Function），专门生产对象。<br>更加简便的方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">user</span>(<span class="params">name, age, gender</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.gender = gender;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><em>this指代它即将生成的对象</em><br>工厂函数的使用方式：<code>new</code>关键字。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> whh = <span class="keyword">new</span> user(<span class="string">'王花花'</span>, <span class="number">18</span>, <span class="string">'female'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>通常我们称作使用new关键字叫的函数为构造器/构造函数(Constructor)，构造函数的首字母一般大写。</p>
+<h2 id="原型————prototype和proto"><a href="#原型————prototype和proto" class="headerlink" title="原型————prototype和proto"></a>原型————prototype和<strong>proto</strong></h2><p>生成一个对象的过程叫实例化，这在任何一种语言中都一样。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> whh = <span class="keyword">new</span> user(<span class="string">'王花花'</span>, <span class="number">18</span>, <span class="string">'female'</span>); <span class="comment">//实例化</span></span><br></pre></td></tr></table></figure></p>
+<p>接下来给这个构造器添加一些功能<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'mia mia mia ...'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.greet = fuction() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Yo, 我叫<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>, 我今年<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>岁了.`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> whh = <span class="keyword">new</span> User(<span class="string">'王花花'</span>, <span class="number">19</span>);</span><br><span class="line"><span class="keyword">var</span> lsd = <span class="keyword">new</span> User(<span class="string">'李拴蛋'</span>, <span class="number">22</span>);</span><br><span class="line"><span class="built_in">console</span>.log(whh.greet()); <span class="comment">//Yo, 我叫王花花, 我今年19岁了.</span></span><br><span class="line"><span class="built_in">console</span>.log(lsd.greet()); <span class="comment">//Yo, 我叫李拴蛋, 我今年22岁了.</span></span><br></pre></td></tr></table></figure></p>
+<p>可见两个实例化的user都实例了greet能力。也就是说，whh这个对象中有greet这个方法，lsd这个对象中也有同样的方法。这两个方法是完全独立的，可以通过如下方式验证：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whh.greet === lsd.greet; <span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p>以上说明，每一次实例化都会创造一份与其它对象同样的方法。这里可以理解为拷贝代码，将构造器中的方法拷贝到实例化的对象中。<br>那么问题来了，真的有必要每一次实例化都要拷贝吗？<br>这时伟大的先人出现了，就引入了原型（prototype）概念。<br>在控制台中随意创建一个<code>function a() {}</code>，然后输入<code>a.prototype</code>，我们可以发现它是一个对象。<br>原生JS就有这样一个机制，在我们创建一个function时，它首先将prototype对象放在function下。<br>prototype用于存放给它即将生产的对象继承下去的属性。也就是我们一眼看不出来，但它实际拥有的能力。举个栗子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">A.prototype.name = <span class="string">'lalala'</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> A();</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，它没有在自有的属性中显示name属性，而是在继承的属性中显示。但使用时与自有属性无区别，而且不管我们new了几个对象，它们中的<strong>proto</strong>都是一样的（其实是指向同一对象的）。<br>测试代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.__proto__ === b.__proto__; <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<p>知道这个原理，就可以优化上面的User构造器了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">User.prototype.greet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Yo, 我叫<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>, 我今年<span class="subst">$&#123;<span class="keyword">this</span>.age&#125;</span>岁了.&#125;`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whh.__proto__ === lsd.__proto__; <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<p>也就是说，现在的function只会存在一个地方，它不再需要每次都拷到实例的对象中去。<br>当我们想知道一个对象来自于哪个工厂函数，可以直接<code>对象.consturctor</code>。<br>那么就意味着，如果我们想复制一个对象的结构，可以<code>new whh.constructor()</code>，也就相当于<code>new User()</code>。</p>
+<h2 id="原生对象的原型"><a href="#原生对象的原型" class="headerlink" title="原生对象的原型"></a>原生对象的原型</h2><p>抛出一个问题，当我们这样创建一个对象的时候，它的原型是什么呢？它有没有父亲呢？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>我们打印这个对象后可以看到，它的constructor是一个叫Object的函数。也就是说，以下两种写法是等价的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.constructor === b.constructor; <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<p>再次抛出问题：当我们想创建一个不继承任何东西的对象时该怎么办呢？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure></p>
+<p>可以在参数中设置原型，如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">Object</span>.create(&#123;</span><br><span class="line">    a:<span class="number">1</span>,</span><br><span class="line">    b:<span class="number">2</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>测试代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br></pre></td></tr></table></figure></p>
+<p>控制台中可以看到a的constructor是一个叫做Array的function。<br>也就相当于：<code>var a = new Array()</code>。两种写法等价。<br>继续，我们可以看到Array()也有继承的属性，它的constructor是Object()。<br>综上，如果Object()是爷爷，那么Array()就是爸爸，而我们声明的数组对象a就是儿子。<br><em>总结: 在JS中只要我们不明确的用Object.create()来创建对象，其余都是继承Object.prototype的。</em></p>
+<h2 id="如何实现多级继承琏"><a href="#如何实现多级继承琏" class="headerlink" title="如何实现多级继承琏"></a>如何实现多级继承琏</h2><p>有这样一条继承链：动物-哺乳动物-人类-lsd<br>如何在代码中实现这样一条继承链？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>) </span>&#123;&#125; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mammal</span>(<span class="params"></span>) </span>&#123;&#125; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125; </span><br><span class="line"><span class="keyword">var</span> lsd = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure></p>
+<p>从最顶层开始看，实例两个对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'mia mia mia...'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.sleep = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'zzz...'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Animal();</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Animal();</span><br></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.eat === b.eat; <span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p>用原型优化构造器:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>) </span>&#123;&#125; </span><br><span class="line">    Animal.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'mia mia mia...'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    Animal.prototype.sleep = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'zzz...'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Animal();</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Animal();</span><br></pre></td></tr></table></figure></p>
+<p>接下来看Mammal构造器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mammal</span>(<span class="params"></span>) </span>&#123;&#125; </span><br><span class="line">    Mammal.prototype.suckle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'mia!'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> Mammal();</span><br></pre></td></tr></table></figure></p>
+<p>那么此时实例化对象m是否有eat和sleep这种能力呢?<br>答案是：暂时还没有。<br>因为此时三个构造器是独立的，我们还没有指定它们之间的继承关系。那么如何指定这条继承琏？<br>拿Mammal和Animal来说，Mammal不仅要继承Animal的prototype，而且还要有自己的东西。<br>我们可以用到前面提到的create方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mammal.prototype = <span class="built_in">Object</span>.create(Animal.prototype);</span><br></pre></td></tr></table></figure></p>
+<p>测试代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m.eat(); <span class="comment">//mia mia mia...</span></span><br><span class="line">m.sleep(); <span class="comment">//zzz...</span></span><br></pre></td></tr></table></figure></p>
+<p>这样我们就可以说它继承成功了。<br>不过现在还有一个问题，我们可以查看一下<code>m.constructor</code>。<br>打印结果为Animal而非Mammal。而事实上Mammal才是m对象的constructor。<br>仔细查看对象m的打印结果，发现并没有constructor。<br>这是因为我们在前面把它的prototype重写了，覆盖掉了。<br><code>Mammal.prototype = Object.create(Animal.prototype);</code><br>所以才会继承上一级的constructor。<br>解决方案：重新明确指定即可。<br><code>Mammal.prototype.constructor = Mammal;</code>]</p>
+<p>接下来看Person。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Persion.prototype.lie = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'你不帅'</span>);</span><br><span class="line">&#125;</span><br><span class="line">Persn.prototype = <span class="built_in">Object</span>.create(Mammal.prototype);</span><br><span class="line">Person.prototype.constructor = Person;</span><br><span class="line"><span class="keyword">var</span> lsd = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure></p>
+<p>到这里就完成了原型的三级继承~~~</p>
+<p>不过还有一个问题：不同的动物毛色可能不一样，体重也不一样，等等等等。也就是说，它们回宫有一些属性，不过值不一样。<br>测试代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">color, weight</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">    <span class="keyword">this</span>.weight = weight;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Animal(<span class="string">'black'</span>, <span class="number">120</span>);</span><br></pre></td></tr></table></figure></p>
+<p>此时实例化的对象中就有了我们用this指定的两个显性属性”color”和”weight”。<br>但是当我们实例一个Mammal的对象并传入参数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> Mammal(<span class="string">'black'</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure></p>
+<p>我们可以发现，是一个空对象。<br>我们希望的是，只要是动物（不管是哺乳动物还是人），都存在毛色、体重等等属性。如何实现？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mammal</span>(<span class="params">color, weight</span>) </span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, color, weight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Person中同理<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">color, weight</span>) </span>&#123;</span><br><span class="line">    Mammal.call(<span class="keyword">this</span>, color, weight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> Mammal(<span class="string">'black'</span>, <span class="number">100</span>);</span><br><span class="line"><span class="keyword">var</span> lsd = <span class="keyword">new</span> Person(<span class="string">'yellow'</span>, <span class="number">180</span>);</span><br><span class="line"><span class="keyword">var</span> whh = <span class="keyword">new</span> Person(<span class="string">'brown'</span>, <span class="number">80</span>);</span><br><span class="line"><span class="built_in">console</span>.log(m, lsd, whh);</span><br></pre></td></tr></table></figure></p>
+<p>可见，显性属性是拷贝的。它们之间互不影响。这就是显性属性的继承方式。<br>Bye~👋</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/28/translate01-Efficiency load JS/" rel="next" title="译-使用async和defer有效地加载JS">
+                <i class="fa fa-chevron-left"></i> 译-使用async和defer有效地加载JS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="onion">
+            
+              <p class="site-author-name" itemprop="name">onion</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ONION-ZX" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="zxonion@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型-Prototype-——构造器-Constructor"><span class="nav-number">1.</span> <span class="nav-text">原型(Prototype)——构造器(Constructor)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当我们谈论原型，我们在谈论什么——对象。"><span class="nav-number">1.1.</span> <span class="nav-text">当我们谈论原型，我们在谈论什么——对象。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂函数现身"><span class="nav-number">1.2.</span> <span class="nav-text">工厂函数现身</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型————prototype和proto"><span class="nav-number">2.</span> <span class="nav-text">原型————prototype和proto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原生对象的原型"><span class="nav-number">3.</span> <span class="nav-text">原生对象的原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何实现多级继承琏"><span class="nav-number">4.</span> <span class="nav-text">如何实现多级继承琏</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">onion</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'EVNiUd7DVr6kGsFPOIB78qfI-gzGzoHsz',
+        appKey: '9359Xc0nhmnoPjb60W4gO89L',
+        placeholder: 'Just say something',
+        avatar:'https://ws3.sinaimg.cn/large/005BYqpgly1g1003mayd2j30zk0k0q4c.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

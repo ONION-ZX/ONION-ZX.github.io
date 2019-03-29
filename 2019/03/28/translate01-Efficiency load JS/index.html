@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g1jjbf73s0j30vh06wgll.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g1jjprl8bij30vg06v0sp.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1g1jk0cqyorj30vh06z0so.jpg">
-<meta property="og:updated_time" content="2019-03-29T07:33:45.502Z">
+<meta property="og:updated_time" content="2019-03-29T08:23:12.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="译-使用async和defer有效地加载JS">
 <meta name="twitter:description" content="When loading a script on an HTML page, you need to be careful not to harm the loading performance of the page. Depending on where and how you add your scripts to an HTML page will influence the loadi">
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-29T15:33:45+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-29T16:23:12+08:00">
                 2019-03-29
               </time>
             
@@ -413,7 +413,7 @@
 <p>This is the best thing you can do, if you need to support older browsers that do not support two relatively recent features of HTML: async and defer.</p>
 <p>如果你需要支持不支持两种相对较新的HTML特性的旧浏览器，那么async(异步)和defer(延迟)是你的最佳解决方案。</p>
 <h2 id="Async-和-Defer"><a href="#Async-和-Defer" class="headerlink" title="Async 和 Defer"></a>Async 和 Defer</h2><p>Both async and defer are boolean attributes. Their usage is similar:</p>
-<p>async和defert都是布尔值属性，它们的用法很相似：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>async和defert都是类型为布尔值的属性，它们的用法很相似：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>if you specify both, async takes precedence on modern browsers, while older browsers that support defer but not async will fallback to defer.</p>
 <p>如果同时使用两个属性，async则在现代浏览器优先使用，而支持defer而不支持async的旧浏览器将退回为defer。</p>
@@ -448,7 +448,7 @@
 <h3 id="阻塞渲染"><a href="#阻塞渲染" class="headerlink" title="阻塞渲染"></a>阻塞渲染</h3><p>Neither async nor defer guarantee anything on blocking rendering. This is up to you and your script (for example, making sure your scripts run after the onLoad) event.</p>
 <p>async和defer都不保证阻止页面渲染。这取决于你和你的脚本（如：确保你的脚本在onLoad之后运行）事件。</p>
 <h3 id="domInteractive"><a href="#domInteractive" class="headerlink" title="domInteractive"></a>domInteractive</h3><p>Scripts marked defer are executed right after the domInteractive event, which happens after the HTML is loaded, parsed and the DOM is built.</p>
-<p>标记为defer的脚本在dom交互事件之后立即执行，者发生在加载、解析完成HTML并且构建DOM之后。</p>
+<p>标记为defer的脚本在domInteractive事件之后立即执行，这发生在加载、解析完成HTML并且构建DOM之后。</p>
 <p>CSS and images at this point are still to be parsed and loaded.</p>
 <p>此时的CSS和图像仍然需要解析和加载。</p>
 <p>Once this is done, the browser will emit the domComplete event, and then onLoad.</p>
@@ -456,7 +456,7 @@
 <p>domInteractive is important because its timing is recognized as a measure of perceived loading speed. See the MDN for more.</p>
 <p>domInteractive很重要，因为它的时间被认为是感知加载速度的量度。更多信息请参阅<a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/domInteractive" target="_blank" rel="noopener">MDN</a>。</p>
 <h2 id="保持顺序"><a href="#保持顺序" class="headerlink" title="保持顺序"></a>保持顺序</h2><p>Another case pro defer: scripts marked async are executed in casual order, when they become available. Scripts marked defer are executed (after parsing completes) in the order which they are defined in the markup.</p>
-<p>标记为async的脚本在可用时按临时顺序执行。标记为defer的脚本按照在表几种定义的顺序执行（在解析完成之后）。</p>
+<p>标记为async的脚本按加载完的顺序执行。标记为defer的脚本按定义的顺序执行（在解析完成之后）。</p>
 <h2 id="请直接告诉我最优解"><a href="#请直接告诉我最优解" class="headerlink" title="请直接告诉我最优解"></a>请直接告诉我最优解</h2><p>The best thing to do to speed up your page loading when using scripts is to put them in the head, and add a defer attribute to your script tag:</p>
 <p>使用脚本时，为页面加载提速的最佳方式是将脚本放在head标签中，并且添加defer属性。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script defer src=<span class="string">"script.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
@@ -502,6 +502,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/29/prototype/" rel="prev" title="复习一下JS中原型的概念">
+                复习一下JS中原型的概念 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -585,7 +589,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
