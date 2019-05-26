@@ -86,17 +86,17 @@
 
 
 
-<meta name="description" content="最近回归租车项目了，被问到选择做pc还是m，考虑了一分钟后选择了m，原因是以前教我写程序的一个老师说过，选择自己没做过的事情才能成长。虽然租车那边pc我也没咋做过 = = 但觉得m对我来说绝对是更新的领域，应该可以学到更多的东西。然后就是接下来学习移动端调试方法，在此做个总结。  IOS系统方案一运行环境：Mac + Safari浏览器 + iPhone调试步骤： 数据线连接iPhone和Mac">
+<meta name="description" content="new操作符的作用 new操作符会返回一个对象，所以我们需要在内部创建一个对象。 这个对象，也就是构造函数中的this，可以访问挂载到this上的任意属性。 这个对象可以访问构造函数原型上的属性，所以需要将对象与构造函数联系起来。 返回原始值需要忽略，返回对象需要正常处理。  手动实现new操作符123456function create(Con, ...args) &amp;#123;    let o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动端调试方法总结">
-<meta property="og:url" content="http://yoursite.com/2019/03/06/mobile-debug/index.html">
+<meta property="og:title" content="重学JS系列 —— new操作符">
+<meta property="og:url" content="http://yoursite.com/2019/05/26/new/index.html">
 <meta property="og:site_name" content="Onion·Space">
-<meta property="og:description" content="最近回归租车项目了，被问到选择做pc还是m，考虑了一分钟后选择了m，原因是以前教我写程序的一个老师说过，选择自己没做过的事情才能成长。虽然租车那边pc我也没咋做过 = = 但觉得m对我来说绝对是更新的领域，应该可以学到更多的东西。然后就是接下来学习移动端调试方法，在此做个总结。  IOS系统方案一运行环境：Mac + Safari浏览器 + iPhone调试步骤： 数据线连接iPhone和Mac">
+<meta property="og:description" content="new操作符的作用 new操作符会返回一个对象，所以我们需要在内部创建一个对象。 这个对象，也就是构造函数中的this，可以访问挂载到this上的任意属性。 这个对象可以访问构造函数原型上的属性，所以需要将对象与构造函数联系起来。 返回原始值需要忽略，返回对象需要正常处理。  手动实现new操作符123456function create(Con, ...args) &amp;#123;    let o">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-28T07:00:17.114Z">
+<meta property="og:updated_time" content="2019-05-26T13:20:34.346Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动端调试方法总结">
-<meta name="twitter:description" content="最近回归租车项目了，被问到选择做pc还是m，考虑了一分钟后选择了m，原因是以前教我写程序的一个老师说过，选择自己没做过的事情才能成长。虽然租车那边pc我也没咋做过 = = 但觉得m对我来说绝对是更新的领域，应该可以学到更多的东西。然后就是接下来学习移动端调试方法，在此做个总结。  IOS系统方案一运行环境：Mac + Safari浏览器 + iPhone调试步骤： 数据线连接iPhone和Mac">
+<meta name="twitter:title" content="重学JS系列 —— new操作符">
+<meta name="twitter:description" content="new操作符的作用 new操作符会返回一个对象，所以我们需要在内部创建一个对象。 这个对象，也就是构造函数中的this，可以访问挂载到this上的任意属性。 这个对象可以访问构造函数原型上的属性，所以需要将对象与构造函数联系起来。 返回原始值需要忽略，返回对象需要正常处理。  手动实现new操作符123456function create(Con, ...args) &amp;#123;    let o">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/06/mobile-debug/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/26/new/">
 
 
 
 
 
-  <title>移动端调试方法总结 | Onion·Space</title>
+  <title>重学JS系列 —— new操作符 | Onion·Space</title>
   
 
 
@@ -268,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/mobile-debug/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/new/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="onion">
@@ -285,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">移动端调试方法总结</h1>
+          <h1 class="post-title" itemprop="name headline">重学JS系列 —— new操作符</h1>
         
 
         <div class="post-meta">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-06T17:47:36+08:00">
-                2019-03-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-26T20:34:55+08:00">
+                2019-05-26
               </time>
             
 
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T15:00:17+08:00">
-                2019-03-28
+              <time title="Post modified" itemprop="dateModified" datetime="2019-05-26T21:20:34+08:00">
+                2019-05-26
               </time>
             
           </span>
@@ -335,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
+                  <a href="/categories/重学JS系列/" itemprop="url" rel="index">
+                    <span itemprop="name">重学JS系列</span>
                   </a>
                 </span>
 
@@ -353,8 +353,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/06/mobile-debug/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/06/mobile-debug/" itemprop="commentCount"></span>
+                <a href="/2019/05/26/new/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/26/new/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -382,17 +382,20 @@
       
 
       
-        <blockquote>
-<p>最近回归租车项目了，被问到选择做pc还是m，考虑了一分钟后选择了m，原因是以前教我写程序的一个老师说过，选择自己没做过的事情才能成长。虽然租车那边pc我也没咋做过 = = 但觉得m对我来说绝对是更新的领域，应该可以学到更多的东西。然后就是接下来学习移动端调试方法，在此做个总结。</p>
-</blockquote>
-<h1 id="IOS系统"><a href="#IOS系统" class="headerlink" title="IOS系统"></a>IOS系统</h1><h2 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h2><h3 id="运行环境：Mac-Safari浏览器-iPhone"><a href="#运行环境：Mac-Safari浏览器-iPhone" class="headerlink" title="运行环境：Mac + Safari浏览器 + iPhone"></a>运行环境：Mac + Safari浏览器 + iPhone</h3><h3 id="调试步骤："><a href="#调试步骤：" class="headerlink" title="调试步骤："></a>调试步骤：</h3><ol>
-<li>数据线连接iPhone和Mac</li>
-<li>iPhone开启Web检查器（设置 -&gt; Safari -&gt; 高级 -&gt; 开启Web检查器）</li>
-<li>iPhone使用Safari浏览器打开要调试的页面</li>
-<li>Mac打开Safari浏览器调试（菜单栏 -&gt; 开发 -&gt; iPhone设备名 -&gt; 选择调试页面）<h3 id="局限性："><a href="#局限性：" class="headerlink" title="局限性："></a>局限性：</h3></li>
-<li>不适用WebView页面</li>
-<li>不适用Windows系统</li>
-</ol>
+        <h1 id="new操作符的作用"><a href="#new操作符的作用" class="headerlink" title="new操作符的作用"></a>new操作符的作用</h1><ul>
+<li>new操作符会返回一个对象，所以我们需要在内部创建一个对象。</li>
+<li>这个对象，也就是构造函数中的this，可以访问挂载到this上的任意属性。</li>
+<li>这个对象可以访问构造函数原型上的属性，所以需要将对象与构造函数联系起来。</li>
+<li>返回原始值需要忽略，返回对象需要正常处理。</li>
+</ul>
+<h1 id="手动实现new操作符"><a href="#手动实现new操作符" class="headerlink" title="手动实现new操作符"></a>手动实现new操作符</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">Con, ...args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="built_in">Object</span>.setPrototypeOf(obj, Con.prototype);</span><br><span class="line">    <span class="keyword">let</span> result = Con.apply(obj, args);</span><br><span class="line">    <span class="keyword">return</span> result instanceOf <span class="built_in">Object</span> ? result : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="实现过程解析"><a href="#实现过程解析" class="headerlink" title="实现过程解析"></a>实现过程解析</h1><ul>
+<li>函数接收不定量参数，第一个参数为构造函数，接下来的参数被构造函数使用。</li>
+<li>内部创建一个空对象obj。</li>
+<li>通过setPrototypeOf使对象obj访问到构造函数原型链上的属性，等同于 <code>obj.__proto__ = Con.prototype</code>。</li>
+<li>将obj绑定到构造函数上，并传入剩余参数。</li>
+<li>判断构造函数返回值是否为对象，如果为对象就使用构造函数返回的值，否则使用obj，这样就实现了忽略构造函数返回的原始值。</li>
+</ul>
 
       
     </div>
@@ -417,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/06/self-talking1/" rel="next" title="三月杂谈">
-                <i class="fa fa-chevron-left"></i> 三月杂谈
+              <a href="/2019/05/25/self-talking2/" rel="next" title="五月杂谈">
+                <i class="fa fa-chevron-left"></i> 五月杂谈
               </a>
             
           </div>
@@ -426,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/12/handlebars/" rel="prev" title="handlebars前端模板学习">
-                handlebars前端模板学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -582,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IOS系统"><span class="nav-number">1.</span> <span class="nav-text">IOS系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方案一"><span class="nav-number">1.1.</span> <span class="nav-text">方案一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行环境：Mac-Safari浏览器-iPhone"><span class="nav-number">1.1.1.</span> <span class="nav-text">运行环境：Mac + Safari浏览器 + iPhone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试步骤："><span class="nav-number">1.1.2.</span> <span class="nav-text">调试步骤：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局限性："><span class="nav-number">1.1.3.</span> <span class="nav-text">局限性：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#new操作符的作用"><span class="nav-number">1.</span> <span class="nav-text">new操作符的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手动实现new操作符"><span class="nav-number">2.</span> <span class="nav-text">手动实现new操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现过程解析"><span class="nav-number">3.</span> <span class="nav-text">实现过程解析</span></a></li></ol></div>
             
 
           </div>
